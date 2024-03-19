@@ -23,6 +23,7 @@ CREATE TABLE inscricao(
     FOREIGN KEY(nome) REFERENCES formacao(nome)
 );
 
+
 ALTER TABLE inscricao ADD CONSTRAINT PK_inscricao PRIMARY KEY(username, nome);
 
 
