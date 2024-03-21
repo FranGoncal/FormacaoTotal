@@ -1,0 +1,101 @@
+/* Estilos personalizados */
+
+body {
+    padding-top: 50px; /* Adiciona espaço no topo para o navbar */
+    margin: 0; /* Remove margens padrão do body */
+    font-family: Arial, sans-serif; /* Define a fonte padrão */
+    overflow: visible; /* Evita que a barra de rolagem horizontal apareça */
+    background-color: aliceblue;
+  }
+  
+  .navbar {
+    transition: all 0.3s ease; /* Adiciona uma transição suave para a mudança de altura do cabeçalho */
+  }
+  
+  .navbar-brand {
+    font-size: 40px; /* Ajusta o tamanho da fonte do logotipo */
+    font-weight: bold; /* Deixa o logotipo em negrito */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Adiciona uma sombra ao texto do logotipo para torná-lo mais visível */
+  }
+  
+  .container-fluid {
+    position: absolute; /* Define a posição absoluta para que o conteúdo possa ser sobreposto ao vídeo */
+    top: 50%; /* Define a posição vertical do conteúdo */
+    left: 50%; /* Define a posição horizontal do conteúdo */
+    transform: translate(-50%, -50%); /* Centraliza o conteúdo horizontal e verticalmente */
+    max-width: 80%; /* Limita a largura máxima do conteúdo */
+   
+  }
+  
+  .bg-white {
+    background-color: rgba(255, 255, 255, 0.8); /* Adiciona um fundo semi-transparente ao conteúdo para melhor legibilidade */
+  }
+  
+  .rounded {
+    border-radius: 10px; /* Adiciona cantos arredondados à caixa do conteúdo */
+  }
+  
+  .p-3 {
+    padding: 1.5rem; /* Adiciona um preenchimento interno de 1.5rem em todas as direções */
+    
+  }
+  
+  .contorno{
+    
+    padding-top: 50px;
+    padding-bottom: 25px;
+    display: grid;
+    place-items: start center; /* Isso alinhará os itens no topo (start) e no centro horizontalmente */
+    height: 100%; /* Centers both horizontally and vertically */
+    
+  }
+  .caixa{
+    
+    min-width: 40%;
+    max-width: 55%;
+    border: 2px solid #333232;
+    border-radius: 20px;
+    background-color: white;
+    
+  }
+  .texto_desc{
+    
+    padding: 30px;
+  }
+ 
+  .linha{
+    margin-left: 50px;
+    margin-right: 50px;
+    margin-top: 0px;
+    margin-bottom: 30px;
+    display: flex;
+    padding-top: 30px;
+  }
+
+  .conteudo1, .conteudo2{
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: -20px;
+  }
+  .conteudo1{
+    flex: 1.4;
+  }
+  .conteudo2{
+    flex:2;
+    font-size: 18px;
+    
+    color: #636363;
+    
+  }
+  .descricao {
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.descricao p {
+    font-size: 16px;
+    line-height: 1.6;
+    margin-bottom: 15px;
+}
