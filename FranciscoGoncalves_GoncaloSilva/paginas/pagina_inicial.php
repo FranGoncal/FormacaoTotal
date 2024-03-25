@@ -10,7 +10,7 @@
   <link rel="stylesheet" href="pagina_inicial.css">
 </head>
 <body>
-  <!-- Navbar -->
+  <!-- Cabeçalho -->
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
     <div class="container">
       <a class="navbar-brand" href="#">Formação Total</a>
@@ -20,10 +20,10 @@
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav ms-auto">
           <li class="nav-item">
-            <a class="nav-link" aria-current="page" href="pagina_inicial.php">Iniciar Sessão</a>
+            <a class="nav-link" aria-current="page" href="iniciar_sessao.php">Iniciar Sessão</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" aria-current="page" href="pagina_inicial.php">Criar Conta</a>
+            <a class="nav-link" aria-current="page" href="criar_conta.php">Criar Conta</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="sobre.html">Sobre</a>
@@ -33,7 +33,7 @@
     </div>
   </nav>
 
-  <!-- Conteúdo principal -->
+  <!-- Conteúdo da página-->
     <div class="contorno">
         <div class="caixa">
             <br>
