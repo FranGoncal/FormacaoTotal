@@ -1,4 +1,6 @@
 <?php
+  $data_nasc = isset($_POST["data_nasc"]) ? $_POST["data_nasc"] : "";
+  $nome = isset($_POST["nome"]) ? $_POST["nome"] : "";
   $username = isset($_POST["username"]) ? $_POST["username"] : "";
   $password = isset($_POST["palavra_passe"]) ? $_POST["palavra_passe"] : "";
   $p_confirmar = isset($_POST["confirmar_senha"]) ? $_POST["confirmar_senha"] : "";
@@ -19,7 +21,7 @@
       mysqli_select_db($conn, 'formacao_total');
       
       if(usernameValido($username,$conn)){
-        $sql = "INSERT INTO utilizador ( username, palavra_passe, nivel) VALUES ('".$username."', '".md5($password)."', 'cliente')";
+        $sql = "INSERT INTO utilizador ( username, palavra_passe, nome, data_nasc, nivel) VALUES ('".$username."', '".md5($password)."', '".$nome."', '".$data_nasc."', 'cliente')";
         $retval = mysqli_query($conn, $sql);
         
         if(mysqli_affected_rows($conn) == 1){//INSERT com sucesso
@@ -64,7 +66,7 @@
   <!-- Estilos personalizados -->
   <link rel="stylesheet" href="pagina_inicial.css">
 </head>
-<body>
+<body style="padding-top: 0px;">
   <!-- Cabeçalho -->
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
     <div class="container">
@@ -102,19 +104,23 @@
             <form action="criar_conta.php" method="post">
               <div class="mb-3">
                 <label for="nome" class="form-label">Nome</label>
-                <input name="nome" type="text" class="form-control" id="nome">
+                <input required name="nome" type="text" class="form-control" id="nome">
               </div>
               <div class="mb-3">
                 <label for="email" class="form-label">Nome de Utilizador</label>
-                <input type="text"  class="form-control" id="username" name="username" aria-describedby="emailHelp">
+                <input required type="text"  class="form-control" id="username" name="username" aria-describedby="emailHelp">
               </div>
               <div class="mb-3">
                 <label for="senha" class="form-label">Palavra-Passe</label>
-                <input type="password" class="form-control" id="palavra_passe" name="palavra_passe">
+                <input required type="password" class="form-control" id="palavra_passe" name="palavra_passe">
               </div>
               <div class="mb-3">
                 <label for="confirmar_senha" class="form-label">Confirmar Palavra-Passe</label>
-                <input type="password" class="form-control" id="confirmar_senha" name="confirmar_senha">
+                <input required type="password" class="form-control" id="confirmar_senha" name="confirmar_senha">
+              </div>
+              <div class="mb-3">
+                <label for="data" class="form-label">Data de Nascimento</label>
+                <input required type="date" value="2000-01-01" class="form-control" name="data_nasc">
               </div>
               <button type="submit" name="submit" class="btn btn-primary btn-block">Criar Conta</button>
             </form>

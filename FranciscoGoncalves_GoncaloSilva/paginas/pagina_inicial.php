@@ -104,8 +104,8 @@
 
 
                 <div style="display: flex;">
-                  <div style="border-right: 1px solid #999999;width: 50%; padding-top: 60px;padding-bottom: 60px;text-align: center;margin-bottom: 10px;">
-                      <a href="dados.php" style="cursor: pointer;">
+                  <div style="border-right: 1px solid #999999;width: 50%; padding-top: 60px;padding-bottom: 60px;text-align: center;margin-bottom: 10px;F">
+                      <a href="dados_pessoais.php" style="cursor: pointer;">
                           <div><img src="dadosPessoais.png" style="width: 250px; height:250px;margin-bottom: 24px;" alt="Search Icon" class="search-icon"></div>
                   
                           <div><button class="botao" name ="submit" type="submit">Gerir Dados Pessoais</button></div>
