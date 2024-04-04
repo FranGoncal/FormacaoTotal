@@ -1,3 +1,10 @@
+<?php 
+  session_start();
+  $mensagem = isset($_SESSION['username']) ? $_SESSION['username'] : "Nada";
+
+
+?>
+
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -18,17 +25,23 @@
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarNav">
+
         <ul class="navbar-nav ms-auto">
+          
           <li class="nav-item">
             <a class="nav-link" aria-current="page" href="iniciar_sessao.php">Iniciar Sessão</a>
           </li>
+          
           <li class="nav-item">
             <a class="nav-link" aria-current="page" href="criar_conta.php">Criar Conta</a>
           </li>
+          
           <li class="nav-item">
             <a class="nav-link" href="sobre.html">Sobre</a>
           </li>
+        
         </ul>
+
       </div>
     </div>
   </nav>
@@ -40,6 +53,7 @@
             <center>
                 <h1>Bem-vindo à Formação Total</h1>
             </center>
+            <center><?php echo $mensagem; ?></center><!--tirar depois-->
             <br>
             <div class="linha">
                 <div class="conteudo1">
@@ -64,7 +78,7 @@
             </div>
         </div>
     </div>
-
+  
 
   <!-- Bootstrap JS e dependências -->
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>

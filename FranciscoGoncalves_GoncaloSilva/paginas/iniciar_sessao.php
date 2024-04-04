@@ -26,10 +26,13 @@
       $row = mysqli_fetch_assoc($retval);
       if($row) {
           // Password correcta
+          ob_start();
+          session_start();
+          $_SESSION['username']=$username;
           if($row['nivel']=="cliente")
-            header("Location: pagina_inicial.html");
+            header("Location: pagina_inicial.php");
           else if($row['nivel']=="admin")
-            header("Location: pagina_inicial_adm.html");
+            header("Location: pagina_inicial_adm.php");
           else
             header("Location: int_erro.html");
           exit();
@@ -94,14 +97,14 @@
             <h3 class="text-center">Iniciar Sessão</h3>
           </div>
           <div class="card-body">
-            <form method="post">
+            <form action="iniciar_sessao.php" method="post">
               <div class="mb-3">
                 <label for="username" class="form-label">Nome de Utilizador</label>
-                <input type="username" name="username" class="form-control" id="email" aria-describedby="emailHelp">
+                <input required type="username" name="username" class="form-control" id="email" aria-describedby="emailHelp">
               </div>
               <div class="mb-3">
                 <label for="palavra_passe" class="form-label">Palavra Passe</label>
-                <input type="password" name="palavra_passe" class="form-control" id="senha">
+                <input required type="password" name="palavra_passe" class="form-control" id="senha">
               </div>
               <button type="submit" name="submit" class="btn btn-primary btn-block">Iniciar Sessão</button>
             </form>
