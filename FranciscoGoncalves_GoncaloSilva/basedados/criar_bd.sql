@@ -5,6 +5,8 @@ USE FORMACAO_TOTAL;
 
 CREATE TABLE utilizador(
     username VARCHAR(40) PRIMARY KEY,
+    nome VARCHAR(40),
+    data_nasc DATE,
     palavra_passe VARCHAR(40),
     nivel   VARCHAR(40)
 );
