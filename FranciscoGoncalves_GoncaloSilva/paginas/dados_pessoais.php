@@ -1,7 +1,63 @@
 <?php 
   session_start();
-  $mensagem = isset($_SESSION['username']) ? $_SESSION['username'] : "Nada";
+  $mensagem_erro = "";
 
+  $username = $_SESSION['username'];
+  
+  $dbhost = 'localhost';
+  $dbuser = 'root';
+  $dbpass = '';
+  $conn = mysqli_connect($dbhost, $dbuser, $dbpass);
+  if (!$conn) {
+      die('Could not connect: ' . mysqli_error($conn));
+  }
+  
+  mysqli_select_db($conn, 'formacao_total');
+  $sql = "SELECT * FROM utilizador WHERE username = '".$username."'";
+  
+  $result = mysqli_query($conn, $sql);
+  if (mysqli_num_rows($result) > 0) {
+      $row = $result->fetch_assoc();
+      $nome = $row["nome"];
+      $data_nasc = $row["data_nasc"];
+  } else {
+      echo "Nenhum utilizador encontrado!";
+      exit();
+  }
+  
+  
+  if ($_SERVER["REQUEST_METHOD"] == "POST") {
+      
+    $username_novo  = $_POST['username'];
+    $nome = $_POST['nome'];
+    $data_nasc_nova = $_POST['data_nasc'];
+    //Validar o username (ser unico ou ser ele proprio)
+    if(usernameValido($username_novo, $conn) || $username_novo == $username ){
+        $sql = "UPDATE utilizador SET username='$username_novo', nome='".$nome."', data_nasc='".$data_nasc_nova."' WHERE username='".$username."'";
+        if ($conn->query($sql) === TRUE) {
+            echo "Dados atualizados com sucesso!";
+            $_SESSION['username']=$username_novo;
+        } else {
+            echo "Erro ao atualizar os dados: " . $conn->error;
+        }
+    }
+    else{
+        $mensagem_erro='<font color="red">Credenciais incorretas</font>';
+    }
+    header('Location: dados_pessoais.php');
+    exit();
+  }
+
+  function usernameValido($username, $conn){
+    $sql = "SELECT * FROM utilizador WHERE username = '$username'";
+    $retval = mysqli_query($conn, $sql);
+    if(!$retval ){
+      die('Could not get data: ' . mysqli_error($conn));
+    }
+    if(mysqli_num_rows($retval) > 0)
+      return false;
+    return true;
+  }
 
 ?>
 
@@ -60,13 +116,36 @@
 
   <!-- Conteúdo da página-->
     <div class="contorno">
-        <div class="caixa">
-        <div id="cabecalho" style="background-color: lightgoldenrodyellow;display: flex;justify-content: center;align-items: center;">
-            <div class="caixa" style="width: 100%; text-align: center;border: none;margin-top:20px;margin-bottom:20px;">
-                <h1>Dados Pessoais</h1>
+        <div class="caixa" style="min-width: 60%;">
+            <div id="cabecalho" style="display: flex;justify-content: center;align-items: center;">
+                <div class="caixa" style="width: 100%; text-align: center;border: none;margin-top:20px;margin-bottom:20px;">
+                    <h1>Dados Pessoais</h1>
+                </div>
             </div>
-        </div>
 
+            <div style="min-height: 500px;display: flex;">
+
+                <div id="esquerda" style="width:50%; padding-top: 60px;padding-bottom: 60px;text-align: center;" >
+                    <img src="user.png" style="width: 200px; height:200px;margin-bottom: 24px;" alt="">
+                </div>
+
+                <div id="direita" style="width:50%; padding-top: 60px;padding-bottom: 60px; padding-left: 50px;text-align: left;">
+                    
+                    <form method="post" action="dados_pessoais.php">
+                        <center><?php echo $mensagem_erro; ?></center>
+                        Nome de Utilizador: <th><input type="text" name="username" value="<?php echo $username; ?>"><br><br>
+                        Nome: <input type="text" style="margin-left: 95px;" name="nome" value="<?php echo $nome; ?>"><br><br>
+                        Data de Nascimento: <input type="date" name="data_nasc" value="<?php echo $data_nasc; ?>"><br><br><br><br>
+                        
+                        <div style="margin-left: 100px;"><button class="botao" name="submit" type="submit">Atualizar</button></div>
+                        
+                    </form>
+                </div>
+
+
+
+
+            </div>
 
           
 
