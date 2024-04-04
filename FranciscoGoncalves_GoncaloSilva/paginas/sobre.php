@@ -1,3 +1,8 @@
+<?php 
+  session_start();
+
+?>
+
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -13,18 +18,44 @@
   <!-- Cabeçalho -->
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
     <div class="container">
-      <a class="navbar-brand" href="pagina_inicial.php">Formação Total</a>
+      
+      <?php
+        //Validação de que a Sessao esta iniciada, caso não esteja tamos o valor do nivel vazio.
+        $nivel = isset($_SESSION['nivel']) ? $_SESSION['nivel'] : "";
+        if($nivel =='admin')
+          echo '<a class="navbar-brand" href="pagina_inicial_adm.php">Formação Total</a>';
+        else
+          echo '<a class="navbar-brand" href="pagina_inicial.php">Formação Total</a>';
+      ?>
+
+
+
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav ms-auto">
-          <li class="nav-item">
-            <a class="nav-link" aria-current="page" href="iniciar_sessao.php">Iniciar Sessão</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" aria-current="page" href="criar_conta.php">Criar Conta</a>
-          </li>
+          
+          <?php 
+              //
+              if(isset($_SESSION['username'])){//No caso de ter sessao iniciada
+                //Mostra a opcao de terminar sessao
+                echo '<li class="nav-item">
+                        <a class="nav-link" aria-current="page" href="logout.php">Terminar Sessão</a>
+                      </li>';
+              }
+              else{//No caso de nao ter iniciado sessao
+                    //Mostra as opcoes da navbar iniciar sessao e criar conta
+                echo '<li class="nav-item">
+                        <a class="nav-link" aria-current="page" href="iniciar_sessao.php">Iniciar Sessão</a>
+                      </li>
+                    
+                      <li class="nav-item">
+                        <a class="nav-link" aria-current="page" href="criar_conta.php">Criar Conta</a>
+                      </li>';
+              }
+            ?>
+
           <li class="nav-item">
             <a class="nav-link" href="#">Sobre</a>
           </li>

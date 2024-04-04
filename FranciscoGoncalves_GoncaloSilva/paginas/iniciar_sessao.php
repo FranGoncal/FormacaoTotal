@@ -29,6 +29,7 @@
           ob_start();
           session_start();
           $_SESSION['username']=$username;
+          $_SESSION['nivel']=$row['nivel'];
           if($row['nivel']=="cliente")
             header("Location: pagina_inicial.php");
           else if($row['nivel']=="admin")
@@ -80,7 +81,7 @@
             <a class="nav-link" aria-current="page" href="criar_conta.php">Criar Conta</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="sobre.html">Sobre</a>
+            <a class="nav-link" href="sobre.php">Sobre</a>
           </li>
         </ul>
       </div>
