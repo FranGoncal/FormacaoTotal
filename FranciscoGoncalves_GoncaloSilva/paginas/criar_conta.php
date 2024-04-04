@@ -81,7 +81,7 @@
             <a class="nav-link" aria-current="page" href="#">Criar Conta</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="sobre.html">Sobre</a>
+            <a class="nav-link" href="sobre.php">Sobre</a>
           </li>
         </ul>
       </div>
