@@ -1,5 +1,5 @@
 --Codigo criação da BD
-DROP DATABASE FORMACAO_TOTAL;
+DROP DATABASE IF EXISTS FORMACAO_TOTAL;
 CREATE DATABASE FORMACAO_TOTAL;
 USE FORMACAO_TOTAL;
 
@@ -13,8 +13,9 @@ CREATE TABLE utilizador(
 
 CREATE TABLE formacao(
     nome VARCHAR(40) PRIMARY KEY,
-    num_maximo INT
-
+    num_maximo INT,
+    username VARCHAR(40),
+    FOREIGN KEY(username) REFERENCES utilizador(username)
 );
 
 CREATE TABLE inscricao(
