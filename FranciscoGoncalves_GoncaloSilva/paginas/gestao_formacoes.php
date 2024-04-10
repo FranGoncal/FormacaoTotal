@@ -58,7 +58,7 @@
   <!-- Conteúdo da página-->
     <div class="contorno" >
         
-          <div class="caixa">
+          <div class="caixa" style="max-width: 85%; min-width: 75%;">
           
             <div id="cabecalho" style="display: flex;justify-content: center;align-items: center;">
               <div class="caixa" style="width: 100%; text-align: center;border: none;margin-top:20px;margin-bottom:20px;">
@@ -85,10 +85,12 @@
                         die('Could not connect: ' . mysqli_error($conn));
                     }
                     // Cria a tabela
-                    echo "<table border='1' style='text-align:center; width: 500px;'><tr><th>Nome</th><th>NumMax</th><br><th>Inscritos</th></tr>";
+                    echo "<table border='1' style='text-align:center; width: 1400px;'><tr><th>Nome</th><th>Vagas</th><br><th>Inscrições</th><th>Data Fecho</th><th>Critério</th></tr>";
                     // Liga a tabela na base de dados
                     $sql = 'SELECT 
                                 f.nome AS nome,
+                                f.data_fecho AS data_fecho,
+                                f.criterio_selecao AS criterio_selecao,
                                 f.num_maximo AS numMax,
                                 COUNT(i.nome) AS numInscricoes
                             FROM 
@@ -110,9 +112,11 @@
                     
                         while($row = mysqli_fetch_array($retval)){// vai buscar ha base de dados os dados nela guardada e poem os na tabela	
                             echo "<tr onclick=\"window.location='formacao.php?nome=".$row['nome']."';\" style='cursor:pointer;'>";
-                            echo "<td style='width: 33%'>".$row['nome']."</td>";
-                            echo "<td style='width: 34%'>".$row['numMax']."</td>";
-                            echo "<td style='width: 33%'>".$row['numInscricoes']."</td>";
+                            echo "<td style='width: 20%'>".$row['nome']."</td>";
+                            echo "<td style='width: 20%'>".$row['numMax']."</td>";
+                            echo "<td style='width: 20%'>".$row['numInscricoes']."</td>";
+                            echo "<td style='width: 20%'>".$row['data_fecho']."</td>";
+                            echo "<td style='width: 20%'>".$row['criterio_selecao']."</td>";
                             echo "</tr>";
                         }
                     
