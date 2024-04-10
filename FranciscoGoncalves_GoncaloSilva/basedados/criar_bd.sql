@@ -45,12 +45,12 @@ INSERT INTO utilizador (username, nome, data_nasc, palavra_passe, nivel) VALUES
 ('utilizador6', 'Utilizador 6', '1982-06-06', 'password6', 'cliente');
 
 -- Insert para a formação HTML
-INSERT INTO formacao (nome, num_maximo, username) VALUES
-('Java', 50, 'docente'),
-('PHP', 10, 'docente'),
-('PHP2', 10, 'docente'),
-('PHP3', 20, 'docente'),
-('HTML', 20, 'docente');
+INSERT INTO formacao (nome, num_maximo, estaFechada, dataFecho, username) VALUES
+('Java', 50, false, "2025-01-01", 'docente'),
+('PHP', 10, false, "2025-01-01", 'docente'),
+('PHP2', 10, false, "2025-01-01", 'docente'),
+('PHP3', 20, false, "2025-01-01", 'docente'),
+('HTML', 20, false, "2025-01-01", 'docente');
 
 -- Insert para a inscrição na formação HTML
 INSERT INTO inscricao (username, nome, data_inscricao) VALUES
@@ -76,5 +76,3 @@ INSERT INTO inscricao (username, nome, data_inscricao) VALUES
 ('utilizador1', 'PHP2', CURDATE()),
 ('utilizador2', 'PHP2', CURDATE()),
 ('aluno', 'PHP3', CURDATE());
-
-
