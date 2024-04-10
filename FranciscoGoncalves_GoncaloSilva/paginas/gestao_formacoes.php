@@ -77,10 +77,8 @@
             <div style="display: flex ;justify-content: center">
                 <center><?php
                     // Ligar à base de dados
-                    $dbhost = 'localhost';
-                    $dbuser = 'root';
-                    $dbpass = '';
-                    $conn = mysqli_connect($dbhost, $dbuser, $dbpass);
+                    include '../basedados/basedados.h';
+                    
                     if(! $conn ){
                         die('Could not connect: ' . mysqli_error($conn));
                     }
@@ -104,7 +102,7 @@
                             GROUP BY 
                                 f.nome, f.num_maximo;';
                     //Seleciona a base de dados
-                    mysqli_select_db($conn,'formacao_total');
+                    
                     $retval = mysqli_query( $conn, $sql );
                     if(! $retval ){
                         die('Could not get data: ' . mysqli_error($conn));// se não funcionar dá erro
@@ -131,7 +129,6 @@
         </div>
     </div>
   
-
   <!-- Bootstrap JS e dependências -->
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"></script>

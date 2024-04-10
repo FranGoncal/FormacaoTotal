@@ -1,6 +1,5 @@
 <?php 
   session_start();
-
 ?>
 
 <!DOCTYPE html>
@@ -27,8 +26,6 @@
         else
           echo '<a class="navbar-brand" href="pagina_inicial_adm.php">Formação Total</a>';
       ?>
-
-
 
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -88,7 +85,6 @@
         </div>
     </div>
 </div>
-
 
   <!-- Bootstrap JS e dependências -->
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>

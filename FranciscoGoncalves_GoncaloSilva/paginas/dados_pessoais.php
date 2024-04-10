@@ -4,15 +4,9 @@
 
   $username = $_SESSION['username'];
   
-  $dbhost = 'localhost';
-  $dbuser = 'root';
-  $dbpass = '';
-  $conn = mysqli_connect($dbhost, $dbuser, $dbpass);
-  if (!$conn) {
-      die('Could not connect: ' . mysqli_error($conn));
-  }
-  
-  mysqli_select_db($conn, 'formacao_total');
+  // Ligar à base de dados
+  include '../basedados/basedados.h';
+
   $sql = "SELECT * FROM utilizador WHERE username = '".$username."'";
   
   $result = mysqli_query($conn, $sql);
@@ -142,7 +136,7 @@
                     
                     <form method="post" action="dados_pessoais.php">
                         <center><?php echo $mensagem_erro; ?></center>
-                        Nome de Utilizador: <th><input type="text" name="username" value="<?php echo $_SESSION['username']; ?>"><br><br>
+                        Nome de Utilizador: <th><?php echo $_SESSION['username']; ?><br><br>
                         Nome: <input type="text" style="margin-left: 95px;" name="nome" value="<?php echo $nome; ?>"><br><br>
                         Data de Nascimento: <input type="date" name="data_nasc" value="<?php echo $data_nasc; ?>"><br><br><br><br>
                         

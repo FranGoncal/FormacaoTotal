@@ -3,16 +3,9 @@
   $mensagem_erro = "";
 
   $username = $_SESSION['username'];
-  
-  $dbhost = 'localhost';
-  $dbuser = 'root';
-  $dbpass = '';
-  $conn = mysqli_connect($dbhost, $dbuser, $dbpass);
-  if (!$conn) {
-      die('Could not connect: ' . mysqli_error($conn));
-  }
-  
-  mysqli_select_db($conn, 'formacao_total');
+   
+  // Ligar à base de dados
+  include '../basedados/basedados.h';
   
   if (isset($_POST["submit"])) {
     $nome  = $_POST['nome'];
@@ -20,14 +13,9 @@
     $data_fecho = $_POST['data_fecho'];
     $criterio_selecao= $_POST["criterio"];
 
-    
-    
     $sql = "INSERT INTO formacao (nome, num_maximo, esta_fechada, criterio_selecao, data_Fecho, username) VALUES
     ('".$nome."', '".$vagas."', false, '".$criterio_selecao."', '".$data_fecho."', '".$username."')";
     $retval = mysqli_query($conn, $sql);
-
-
-    
             
     if(mysqli_affected_rows($conn) == 1){//INSERT com sucesso
         echo "<script>
@@ -39,8 +27,7 @@
     }
     else//INSERT falhou
         $mensagem_erro = '<font color="red">Algo correu mal!!!</font>';
-    
-    
+        
   }
 
   function usernameValido($username, $conn){

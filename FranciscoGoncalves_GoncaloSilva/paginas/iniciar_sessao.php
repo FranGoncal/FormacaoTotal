@@ -5,15 +5,8 @@
   $mensagem_erro = "";
   
   if(isset($_POST["submit"])) {
-    $dbhost = 'localhost';
-    $dbuser = 'root';
-    $dbpass = '';
-    $dbname = 'formacao_total';
-
-    $conn = mysqli_connect($dbhost, $dbuser, $dbpass, $dbname);
-    if(!$conn ){
-      die('Could not connect: ' . mysqli_error($conn));
-    }
+    // Ligar à base de dados
+    include '../basedados/basedados.h';
     
     $sql = "SELECT nivel FROM utilizador WHERE username = '$username' AND palavra_passe = '".md5($password)."'";
     

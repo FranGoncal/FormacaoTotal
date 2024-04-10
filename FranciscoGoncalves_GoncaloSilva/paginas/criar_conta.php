@@ -8,17 +8,9 @@
   
   if(isset($_POST["submit"])) {
     if($p_confirmar === $password){
-      $dbhost = 'localhost';
-      $dbuser = 'root';
-      $dbpass = '';
-
-      $conn = mysqli_connect($dbhost, $dbuser, $dbpass);
-      if(!$conn ){
-        die('Could not connect: ' . mysqli_error($conn));
-      }
       
-      //Seleciona a base de dados
-      mysqli_select_db($conn, 'formacao_total');
+      // Ligar à base de dados
+      include '../basedados/basedados.h';
       
       if(usernameValido($username,$conn)){
         $sql = "INSERT INTO utilizador ( username, palavra_passe, nome, data_nasc, nivel) VALUES ('".$username."', '".md5($password)."', '".$nome."', '".$data_nasc."', 'cliente')";
