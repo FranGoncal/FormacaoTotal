@@ -14,8 +14,9 @@ CREATE TABLE utilizador(
 CREATE TABLE formacao(
     nome VARCHAR(40) PRIMARY KEY,
     num_maximo INT,
-    estaFechada BOOLEAN,      --Fechada/aberta
-    dataFecho DATE,      --Data em que o docente pode fechar a formacao
+    esta_fechada BOOLEAN,
+    criterio_selecao VARCHAR(40),
+    data_fecho DATE,
     username VARCHAR(40),
     FOREIGN KEY(username) REFERENCES utilizador(username)
 );
@@ -28,10 +29,7 @@ CREATE TABLE inscricao(
     FOREIGN KEY(nome) REFERENCES formacao(nome)
 );
 
-
 ALTER TABLE inscricao ADD CONSTRAINT PK_inscricao PRIMARY KEY(username, nome);
-
-
 
 INSERT INTO utilizador (username, nome, data_nasc, palavra_passe, nivel) VALUES
 ('aluno', 'aluno', '1990-01-01', 'ca0cd09a12abade3bf0777574d9f987f ', 'cliente'),
@@ -44,15 +42,13 @@ INSERT INTO utilizador (username, nome, data_nasc, palavra_passe, nivel) VALUES
 ('utilizador5', 'Utilizador 5', '1985-05-05', 'password5', 'cliente'),
 ('utilizador6', 'Utilizador 6', '1982-06-06', 'password6', 'cliente');
 
--- Insert para a formação HTML
-INSERT INTO formacao (nome, num_maximo, estaFechada, dataFecho, username) VALUES
-('Java', 50, false, "2025-01-01", 'docente'),
-('PHP', 10, false, "2025-01-01", 'docente'),
-('PHP2', 10, false, "2025-01-01", 'docente'),
-('PHP3', 20, false, "2025-01-01", 'docente'),
-('HTML', 20, false, "2025-01-01", 'docente');
+INSERT INTO formacao (nome, num_maximo, esta_fechada, criterio_selecao, data_Fecho, username) VALUES
+('Java', 50, false, "Data Inscrição", "2025-01-01", 'docente'),
+('PHP', 10, false, "Data Inscrição", "2025-01-01", 'docente'),
+('PHP2', 10, false, "Data Inscrição", "2025-01-01", 'docente'),
+('PHP3', 20, false, "Data Inscrição", "2025-01-01", 'docente'),
+('HTML', 20, false, "Data Inscrição", "2025-01-01", 'docente');
 
--- Insert para a inscrição na formação HTML
 INSERT INTO inscricao (username, nome, data_inscricao) VALUES
 ('aluno', 'HTML', CURDATE()),
 ('utilizador1', 'HTML', CURDATE()),
