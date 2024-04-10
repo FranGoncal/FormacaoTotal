@@ -68,7 +68,9 @@
 
 
             <div style="display: flex ;justify-content: center">
-                <div class="caixa" style="width: 100%; text-align: center;border: none;margin-top:20px;margin-bottom:20px;" ><Button class="botao">+ Adicionar</Button></div>
+                <div class="caixa" style="width: 100%; text-align: center;border: none;margin-top:20px;margin-bottom:20px;" >
+                  <a href="adiciona_formacao.php"><Button class="botao">+ Adicionar</Button></a>
+                </div>
                 <br><br><br>
             </div>
             
