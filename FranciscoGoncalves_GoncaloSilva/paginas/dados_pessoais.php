@@ -79,7 +79,13 @@
   <!-- Cabeçalho -->
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
     <div class="container">
-      <a class="navbar-brand" href="pagina_inicial.php">Formação Total</a>
+      <?php
+        if($_SESSION['nivel']=="cliente")
+          echo'<a class="navbar-brand" href="pagina_inicial.php">Formação Total</a>';
+        else 
+          echo '<a class="navbar-brand" href="pagina_inicial_adm.php">Formação Total</a>';
+      ?>
+      
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>

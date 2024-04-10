@@ -63,7 +63,7 @@
 
 
 
-          <?php 
+          <?php
             if(!isset($_SESSION['username'])){//No caso de ter sessao nao iniciada
             echo '<br>
                   <center>

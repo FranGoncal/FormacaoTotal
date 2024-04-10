@@ -1,8 +1,5 @@
 <?php 
   session_start();
-  $mensagem = isset($_SESSION['username']) ? $_SESSION['username'] : "Nada";
-
-
 ?>
 
 <!DOCTYPE html>
@@ -59,9 +56,86 @@
   </nav>
 
   <!-- Conteúdo da página-->
-    <div class="contorno">
-        <div class="caixa">
+    <div class="contorno" >
+        
             
+        <?php
+            if($_SESSION['nivel']=="docente"){//No caso de ser admin
+            echo '
+          <div class="caixa">
+          
+            <div id="cabecalho" style="display: flex;justify-content: center;align-items: center;">
+              <div class="caixa" style="width: 100%; text-align: center;border: none;margin-top:20px;margin-bottom:20px;">
+                    <h1>Área de Docente</h1>
+              </div>
+            </div>
+
+
+            <div style="display: flex;">
+              <div style="border-right: 1px solid #999999;width: 50%; padding-top: 60px;padding-bottom: 60px;text-align: center;margin-bottom: 10px;F">
+                  <a href="dados_pessoais.php" style="cursor: pointer;">
+                      <div><img src="dadosPessoais.png" style="width: 250px; height:250px;margin-bottom: 24px;" alt="Search Icon" class="search-icon"></div>
+              
+                      <div><button class="botao" name ="submit" type="submit">Gerir Dados Pessoais</button></div>
+                  </a>
+              </div>
+              
+
+  
+              <div style="border-left : 1px solid #999999;width: 50%; padding-top: 60px;padding-bottom: 60px;text-align: center;margin-bottom: 10px;">
+                  <a href="gerirInscricoes.php" style="cursor: pointer;">
+                      <div><img src="livros.png" style="width: 250px; height:250px;margin-bottom: 24px;" alt="Search Icon" class="search-icon"></div>
+                      
+                      <div><button class="botao" name ="submit" type="submit">Gerir Inscrições</button></div>
+                  </a>
+              </div>
+            </div>
+            
+            ';
+              }
+              else if($_SESSION['nivel']=="admin"){//No caso de ser docente
+                echo'
+              <div class="caixa" style="width: 1000px;">
+                <div id="cabecalho" style="display: flex;justify-content: center;align-items: center;">
+                  <div class="caixa" style="width: 100%; text-align: center;border: none;margin-top:20px;margin-bottom:20px;">
+                        <h1>Área de Administrador</h1>
+                  </div>
+                </div>
+
+
+                <div style="display: flex;">
+                  <div style="border-right: 1px solid #999999;width: 50%; padding-top: 60px;padding-bottom: 60px;text-align: center;margin-bottom: 10px;F">
+                      <a href="dados_pessoais.php" style="cursor: pointer;">
+                          <div><img src="dadosPessoais.png" style="width: 250px; height:250px;margin-bottom: 24px;" alt="Search Icon" class="search-icon"></div>
+                  
+                          <div><button class="botao" name ="submit" type="submit">Gerir Dados Pessoais</button></div>
+                      </a>
+                  </div>
+                  
+                  <div style="border-left : 1px solid #999999;width: 50%; padding-top: 60px;padding-bottom: 60px;text-align: center;margin-bottom: 10px;">
+                      <a href="gerirInscricoes.php" style="cursor: pointer;">
+                          <div><img src="livros.png" style="width: 250px; height:250px;margin-bottom: 24px;" alt="Search Icon" class="search-icon"></div>
+                          
+                          <div><button class="botao" name ="submit" type="submit">Gerir Inscrições</button></div>
+                      </a>
+                  </div>
+      
+                  <div style="border-left : 1px solid #999999;width: 50%; padding-top: 60px;padding-bottom: 60px;text-align: center;margin-bottom: 10px;">
+                      <a href="gerirInscricoes.php" style="cursor: pointer;">
+                          <div><img src="livros.png" style="width: 250px; height:250px;margin-bottom: 24px;" alt="Search Icon" class="search-icon"></div>
+                          
+                          <div><button class="botao" name ="submit" type="submit">Gerir Inscrições</button></div>
+                      </a>
+                  </div>
+                </div>
+                
+                ';
+              }
+              else {
+                header("Location: logout.php");
+              }
+          ?>
+
         </div>
     </div>
   

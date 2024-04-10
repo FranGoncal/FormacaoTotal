@@ -32,7 +32,7 @@
           $_SESSION['nivel']=$row['nivel'];
           if($row['nivel']=="cliente")
             header("Location: pagina_inicial.php");
-          else if($row['nivel']=="admin")
+          else if($row['nivel']=="admin" || $row['nivel']=="docente")
             header("Location: pagina_inicial_adm.php");
           else
             header("Location: int_erro.html");
