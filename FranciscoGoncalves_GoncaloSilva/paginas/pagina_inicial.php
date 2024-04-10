@@ -1,6 +1,5 @@
 <?php 
   session_start();
-  $mensagem = isset($_SESSION['username']) ? $_SESSION['username'] : "Nada";
 
 
 ?>
@@ -70,7 +69,6 @@
                   <center>
                       <h1>Bem-vindo à Formação Total</h1>
                   </center>
-                  <center><?php echo $mensagem; ?></center><!--tirar depois-->
                   <br>
                   <div class="linha">
                       <div class="conteudo1">

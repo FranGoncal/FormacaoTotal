@@ -27,25 +27,28 @@
   
   
   if ($_SERVER["REQUEST_METHOD"] == "POST") {
-      
     $username_novo  = $_POST['username'];
     $nome = $_POST['nome'];
-    $data_nasc_nova = $_POST['data_nasc'];
+    $data_nasc = $_POST['data_nasc'];
     //Validar o username (ser unico ou ser ele proprio)
+    
     if(usernameValido($username_novo, $conn) || $username_novo == $username ){
-        $sql = "UPDATE utilizador SET username='$username_novo', nome='".$nome."', data_nasc='".$data_nasc_nova."' WHERE username='".$username."'";
+        $sql = "UPDATE utilizador SET username='$username_novo', nome='".$nome."', data_nasc='".$data_nasc."' WHERE username='".$username."'";
         if ($conn->query($sql) === TRUE) {
-            echo "Dados atualizados com sucesso!";
+            //echo "Dados atualizados com sucesso!";
             $_SESSION['username']=$username_novo;
+            echo" <script>alert('Editado com sucesso!');</script>";
         } else {
-            echo "Erro ao atualizar os dados: " . $conn->error;
+            //echo "Erro ao atualizar os dados: " . $conn->error;
+            echo" <script>alert('Editado sem sucesso :(!');</script>";
         }
     }
     else{
         $mensagem_erro='<font color="red">Credenciais incorretas</font>';
+        //header('Location: dados_pessoais.php');
     }
-    header('Location: dados_pessoais.php');
-    exit();
+    
+    //exit();
   }
 
   function usernameValido($username, $conn){
@@ -76,7 +79,7 @@
   <!-- Cabeçalho -->
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
     <div class="container">
-      <a class="navbar-brand" href="#">Formação Total</a>
+      <a class="navbar-brand" href="pagina_inicial.php">Formação Total</a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -133,7 +136,7 @@
                     
                     <form method="post" action="dados_pessoais.php">
                         <center><?php echo $mensagem_erro; ?></center>
-                        Nome de Utilizador: <th><input type="text" name="username" value="<?php echo $username; ?>"><br><br>
+                        Nome de Utilizador: <th><input type="text" name="username" value="<?php echo $_SESSION['username']; ?>"><br><br>
                         Nome: <input type="text" style="margin-left: 95px;" name="nome" value="<?php echo $nome; ?>"><br><br>
                         Data de Nascimento: <input type="date" name="data_nasc" value="<?php echo $data_nasc; ?>"><br><br><br><br>
                         
