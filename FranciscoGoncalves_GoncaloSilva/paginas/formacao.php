@@ -46,17 +46,6 @@
     //exit();
   }
 
-  function cursoValido($nome, $conn){
-    $sql = "SELECT * FROM formacao WHERE nome = '$nome'";
-    $retval = mysqli_query($conn, $sql);
-    if(!$retval ){
-      die('Could not get data: ' . mysqli_error($conn));
-    }
-    if(mysqli_num_rows($retval) > 0)
-      return false;
-    return true;
-  }
-
 ?>
 
 <!DOCTYPE html>
@@ -129,29 +118,70 @@
 
             <div style="min-height: 500px;display: flex;">
 
-                <div id="esquerda" style="width:50%; padding-top: 60px;padding-bottom: 60px;text-align: center;" >
-                    <img src="user.png" style="width: 200px; height:200px;margin-bottom: 24px;" alt="">
-                </div>
+                
 
-                <div id="direita" style="width:50%; padding-top: 60px;padding-bottom: 60px; padding-left: 50px;text-align: left;">
+                <div id="direita" style="width:100%; padding-top: 60px;padding-bottom: 60px; padding-left: 50px;text-align: left;margin-left: 33%;">
                     
-                    <form method="post" action="dados_pessoais.php">
+                <!-- Caso a formação esteja aberta -->
+               
+                <form method="post" action="formacao.php">
                         <center><?php echo $mensagem_erro; ?></center>
-                        Nome de Utilizador: <th><?php echo $_SESSION['username']; ?><br><br>
-                        Nome: <input type="text" style="margin-left: 95px;" name="nome" value="<?php echo $nome; ?>"><br><br>
-                        Data de Nascimento: <input type="date" name="data_nasc" value="<?php echo $data_nasc; ?>"><br><br><br><br>
+
+                        Nome da Formação: <th><?php echo $nome; ?><br><br>
+                        Vagas: <input type="text" style="margin-left: 95px;" name="num_maximo" value="<?php echo $vagas; ?>"><br><br>
+                        Esta Fechado: <th><?php echo $esta_fechada; ?><br><br>
+                        Data Fecho: <input type="date" style="margin-left: 65px;" name="num_maximo" value="<?php echo $data_fecho; ?>"><br><br>
+
+                        Critério Seleção:<select id="opcoes" name="criterio" style="margin-left: 35px;">
+                        <?php
+                            if($criterio == "data_inscricao"){
+                                echo'
+                                <option value="data_inscricao">Data Inscrição</option>
+                                <option value="ordem_alfabetica">Ordem Alfabética</option>
+                                <option value="maior_idade">Maior Idade</option>
+                                <option value="menor_idade">Menor Idade</option>';
+                            }
+                            else if($criterio == "ordem_alfabetica"){
+                                echo'
+                                <option value="ordem_alfabetica">Ordem Alfabética</option>
+                                <option value="data_inscricao">Data Inscrição</option>
+                                <option value="maior_idade">Maior Idade</option>
+                                <option value="menor_idade">Menor Idade</option>';
+                            }
+                            else if($criterio == "maior_idade"){
+                                echo'
+                                <option value="maior_idade">maior_idade</option>
+                                <option value="data_inscricao">Data Inscrição</option>
+                                <option value="ordem_alfabetica">Ordem Alfabética</option>
+                                <option value="menor_idade">Menor Idade</option>';
+                            }
+                            else if($criterio == "menor_idade"){
+                                echo'
+                                <option value="menor_idade">Menor Idade</option>
+                                <option value="data_inscricao">Data Inscrição</option>
+                                <option value="ordem_alfabetica">Ordem Alfabética</option>
+                                <option value="maior_idade">Maior Idade</option>';
+                            }
+                         ?>   
+                        </select><br><br>
+
+                        Docente: <th><?php echo $responsavel; ?><br><br>
                         
-                        <div style="margin-left: 100px;"><button class="botao" name="submit" type="submit">Atualizar</button></div>
                         
+                        <div style="margin-left: 130px;"><button class="botao" name="submit" type="submit">Atualizar</button></div>
+                        <br>
+    
+                        <?php
+                            if($data_fecho < date('Y-m-d')){//Caso a dataFecho tenha passado
+                                echo '<div style="margin-left: 100px;"><button class="botao" name="submit" type="submit">Fechar Formação</button></div>';
+                            }else{//Caso a dataFecho não tenha passado (cinzento)
+                                echo '<div style="margin-left: 100px;"><button class="botao_off" name="submit" type="submit">Fechar Formação</button></div>';
+                            }
+                        ?>
+                             
                     </form>
                 </div>
-
-
-
-
-            </div>
-
-          
+            </div>     
 
         </div>
     </div>
