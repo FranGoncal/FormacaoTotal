@@ -120,7 +120,7 @@ body {
   padding: 10px 20px; 
   border: 2px solid #4b4b4b; 
   border-radius: 8px;
-  cursor: pointer;
+  cursor: auto;
   background-color: #727272;
 }
 

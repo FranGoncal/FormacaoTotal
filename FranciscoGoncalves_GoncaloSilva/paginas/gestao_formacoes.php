@@ -80,10 +80,10 @@
                     include '../basedados/basedados.h';
                     
                     if(! $conn ){
-                        die('Could not connect: ' . mysqli_error($conn));
+                        die('Could not connect: ' . mysqli_error($conn)); /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
                     }
                     // Cria a tabela
-                    echo "<table border='1' style='text-align:center; width: 1400px;'><tr><th>Nome</th><th>Vagas</th><br><th>Inscrições</th><th>Data Fecho</th><th>Critério</th></tr>";
+                    echo "<table border='1' style='text-align:center; width: 1100px;'><tr><th>Nome</th><th>Vagas</th><br><th>Inscrições</th><th>Data Fecho</th><th>Critério</th></tr>";
                     // Liga a tabela na base de dados
                     $sql = 'SELECT 
                                 f.nome AS nome,
