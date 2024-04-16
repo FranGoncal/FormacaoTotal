@@ -8,11 +8,17 @@
   include '../basedados/basedados.h';
   
   if (isset($_POST["submit"])) {
+
+    
     $nome  = $_POST['nome'];
     $vagas = $_POST['vagas'];
     $data_fecho = $_POST['data_fecho'];
     $criterio_selecao= $_POST["criterio"];
 
+    if(formacaoValida($nome,$conn)){
+
+
+    
     $sql = "INSERT INTO formacao (nome, num_maximo, esta_fechada, criterio_selecao, data_Fecho, username) VALUES
     ('".$nome."', '".$vagas."', false, '".$criterio_selecao."', '".$data_fecho."', '".$username."')";
     $retval = mysqli_query($conn, $sql);
@@ -27,11 +33,14 @@
     }
     else//INSERT falhou
         $mensagem_erro = '<font color="red">Algo correu mal!!!</font>';
-        
+    }
+    else{
+      echo" <script>alert('Essa formação já Existe! :(');</script>";
+    }    
   }
 
-  function usernameValido($username, $conn){
-    $sql = "SELECT * FROM utilizador WHERE username = '$username'";
+  function formacaoValida($nome, $conn){
+    $sql = "SELECT * FROM formacao WHERE nome = '$nome'";
     $retval = mysqli_query($conn, $sql);
     if(!$retval ){
       die('Could not get data: ' . mysqli_error($conn));
@@ -100,10 +109,10 @@
                     
                     <form method="post" action="adiciona_formacao.php">
                         <center><?php echo $mensagem_erro; ?></center>
-                        Nome da Formação: <th><input type="text" name="nome"><br><br>
-                        Vagas: <input type="number" style="margin-left: 95px;" name="vagas"><br><br>
-                        Data de Fecho: <input type="date" name="data_fecho" style="margin-left: 35px;"><br><br>
-                        Criterio Seleção<select id="opcoes" name="criterio" style="margin-left: 35px;">
+                        Nome da Formação: <th><input type="text" name="nome" required><br><br>
+                        Vagas: <input type="number" style="margin-left: 95px;" name="vagas" required><br><br>
+                        Data de Fecho: <input type="date" name="data_fecho" style="margin-left: 35px;" required><br><br>
+                        Criterio Seleção<select id="opcoes" name="criterio" style="margin-left: 35px;" required>
                             <option value="data_inscricao">Data Inscrição</option>
                             <option value="ordem_alfabetica">Ordem Alfabética</option>
                             <option value="maior_idade">Maior Idade</option>

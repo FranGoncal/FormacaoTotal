@@ -1,5 +1,6 @@
 <?php 
   session_start();
+  $nome = $_SESSION['username'];
 ?>
 
 <!DOCTYPE html>
@@ -98,7 +99,7 @@
                             LEFT JOIN 
                                 inscricao i ON f.nome = i.nome
                             WHERE 
-                                u.username = "docente"
+                                u.username = "'.$nome.'"
                             GROUP BY 
                                 f.nome, f.num_maximo;';
                     //Seleciona a base de dados

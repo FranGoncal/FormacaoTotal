@@ -178,17 +178,17 @@
                                 <div style="margin-left: 130px;"><button class="botao" name="submit" type="submit">Atualizar</button></div>
                                 <br>';
             
-                                
-                                if($data_fecho > date('Y-m-d')){//Caso a dataFecho tenha passado
-                                    echo '<div style="margin-left: 100px;"><button class="botao" name="fechar" type="submit">Fechar Formação</button></div>';
-                                }else{//Caso a dataFecho não tenha passado (cinzento)
-                                    echo '<div style="margin-left: 100px;"><button class="botao_off" type="submit" onclick="alert(\'A Data limite ainda não passou\')">Fechar Formação</button></div>';
-                                }
-                                
                                     
-                            echo '</form>
-                            </div>';
-                }
+                            echo '</form>';
+
+                            if($data_fecho < date('Y-m-d')){//Caso a dataFecho tenha passado
+                              echo '<a href="fechar_formacao.php?nome='.$nome.'&criterio='.$criterio.'&vagas='.$vagas.'"><div style="margin-left: 100px;"><button class="botao" name="fechar">Fechar Formação</button></div></a>';
+                            }else{//Caso a dataFecho não tenha passado (cinzento)
+                              echo '<div style="margin-left: 100px;"><button class="botao_off" type="submit" onclick="alert(\'A Data limite ainda não passou\')">Fechar Formação</button></div>';
+                            }
+                            
+                            echo '</div>';
+                }         
                 else{
                     echo '
                     <div id="direita" style="width:100%; padding-top: 60px;padding-bottom: 60px; padding-left: 50px;text-align: left;margin: 6%;">
