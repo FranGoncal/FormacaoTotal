@@ -44,32 +44,32 @@ INSERT INTO utilizador (username, nome, data_nasc, palavra_passe, nivel) VALUES
 ('utilizador6', 'Utilizador 6', '1982-06-06', 'password6', 'cliente');
 
 INSERT INTO formacao (nome, num_maximo, esta_fechada, criterio_selecao, data_Fecho, username) VALUES
-('Java', 50, false, "data_inscricao", "2025-01-01", 'docente'),
-('PHP', 10, false, "data_inscricao", "2025-01-01", 'docente'),
-('PHP2', 10, false, "data_inscricao", "2025-01-01", 'docente'),
-('PHP3', 20, false, "data_inscricao", "2025-01-01", 'docente'),
-('HTML', 20, false, "data_inscricao", "2025-01-01", 'docente');
+('Java', 50, false, "Data inscrição", "2025-01-01", 'docente'),
+('PHP', 10, false, "Data inscrição", "2025-01-01", 'docente'),
+('PHP2', 10, false, "Ordem Alfabética", "2025-01-01", 'docente'),
+('PHP3', 20, false, "Menor Idade", "2025-01-01", 'docente'),
+('HTML', 20, false, "Maior Idade", "2025-01-01", 'docente');
 
 INSERT INTO inscricao (username, estado, nome, data_inscricao) VALUES
-('aluno', 'aceite','HTML', CURDATE()),
+('aluno', 'pendente','HTML', CURDATE()),
 ('utilizador1','pendente', 'HTML', '1999-05-10'),
 ('utilizador2','pendente', 'HTML', '2022-05-10'),
 ('utilizador3','pendente', 'HTML', '2021-01-12'),
 ('utilizador4','pendente', 'HTML', '2000-01-12'),
 ('utilizador5','pendente', 'HTML', '2001-02-12'),
 ('utilizador6','pendente', 'HTML', '2001-01-12'),
-('aluno','aceite', 'Java', CURDATE()),
-('utilizador1','aceite', 'Java', CURDATE()),
-('utilizador2','aceite', 'Java', CURDATE()),
-('utilizador3','aceite', 'Java', CURDATE()),
-('utilizador4','aceite', 'Java', CURDATE()),
-('utilizador5','aceite', 'Java', CURDATE()),
-('aluno','aceite', 'PHP', CURDATE()),
-('utilizador1','aceite', 'PHP', CURDATE()),
-('utilizador2','aceite', 'PHP', CURDATE()),
-('utilizador3','aceite', 'PHP', CURDATE()),
-('utilizador4','aceite', 'PHP', CURDATE()),
-('aluno','aceite', 'PHP2', CURDATE()),
-('utilizador1','aceite', 'PHP2', CURDATE()),
-('utilizador2','aceite', 'PHP2', CURDATE()),
-('aluno','aceite', 'PHP3', CURDATE());
+('aluno','pendente', 'Java', CURDATE()),
+('utilizador1','pendente', 'Java', CURDATE()),
+('utilizador2','pendente', 'Java', CURDATE()),
+('utilizador3','pendente', 'Java', CURDATE()),
+('utilizador4','pendente', 'Java', CURDATE()),
+('utilizador5','pendente', 'Java', CURDATE()),
+('aluno','pendente', 'PHP', CURDATE()),
+('utilizador1','pendente', 'PHP', CURDATE()),
+('utilizador2','pendente', 'PHP', CURDATE()),
+('utilizador3','pendente', 'PHP', CURDATE()),
+('utilizador4','pendente', 'PHP', CURDATE()),
+('aluno','pendente', 'PHP2', CURDATE()),
+('utilizador1','pendente', 'PHP2', CURDATE()),
+('utilizador2','pendente', 'PHP2', CURDATE()),
+('aluno','pendente', 'PHP3', CURDATE());

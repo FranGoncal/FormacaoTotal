@@ -141,33 +141,33 @@
 
                                 Critério Seleção:<select id="opcoes" name="criterio_selecao" style="margin-left: 35px;">';
                                 
-                                    if($criterio == "data_inscricao"){
+                                    if($criterio == "Data Inscrição"){
                                         echo'
-                                        <option value="data_inscricao">Data Inscrição</option>
-                                        <option value="ordem_alfabetica">Ordem Alfabética</option>
-                                        <option value="maior_idade">Maior Idade</option>
-                                        <option value="menor_idade">Menor Idade</option>';
+                                        <option value="Data Inscrição">Data Inscrição</option>
+                                        <option value="Ordem Alfabética">Ordem Alfabética</option>
+                                        <option value="Maior Idade">Maior Idade</option>
+                                        <option value="Menor Idade">Menor Idade</option>';
                                     }
-                                    else if($criterio == "ordem_alfabetica"){
+                                    else if($criterio == "Ordem Alfabética"){
                                         echo'
-                                        <option value="ordem_alfabetica">Ordem Alfabética</option>
-                                        <option value="data_inscricao">Data Inscrição</option>
-                                        <option value="maior_idade">Maior Idade</option>
-                                        <option value="menor_idade">Menor Idade</option>';
+                                        <option value="Ordem Alfabética">Ordem Alfabética</option>
+                                        <option value="Data Inscrição">Data Inscrição</option>
+                                        <option value="Maior Idade">Maior Idade</option>
+                                        <option value="Menor Idade">Menor Idade</option>';
                                     }
-                                    else if($criterio == "maior_idade"){
+                                    else if($criterio == "Maior Idade"){
                                         echo'
-                                        <option value="maior_idade">maior_idade</option>
-                                        <option value="data_inscricao">Data Inscrição</option>
-                                        <option value="ordem_alfabetica">Ordem Alfabética</option>
-                                        <option value="menor_idade">Menor Idade</option>';
+                                        <option value="Maior Idade">Maior Idade</option>
+                                        <option value="Data Inscrição">Data Inscrição</option>
+                                        <option value="Ordem Alfabética">Ordem Alfabética</option>
+                                        <option value="Menor Idade">Menor Idade</option>';
                                     }
-                                    else if($criterio == "menor_idade"){
+                                    else if($criterio == "Menor Idade"){
                                         echo'
-                                        <option value="menor_idade">Menor Idade</option>
-                                        <option value="data_inscricao">Data Inscrição</option>
-                                        <option value="ordem_alfabetica">Ordem Alfabética</option>
-                                        <option value="maior_idade">Maior Idade</option>';
+                                        <option value="Menor Idade">Menor Idade</option>
+                                        <option value="Data Inscrição">Data Inscrição</option>
+                                        <option value="Ordem Alfabética">Ordem Alfabética</option>
+                                        <option value="Maior Idade">Maior Idade</option>';
                                     }
                                     
                                 echo '</select><br><br>
@@ -191,7 +191,7 @@
                 }         
                 else{
                     echo '
-                    <div id="direita" style="width:100%; padding-top: 60px;padding-bottom: 60px; padding-left: 50px;text-align: left;margin: 6%;">
+                    <div id="direita" style="width: 400px; max-width: 450px;padding-top: 60px;padding-bottom: 60px; padding-left: 60px;text-align: left;margin: 6%;">
                     <div>
                                 <center>'.$mensagem_erro.'</center>
                                 Nome da Formação: <th>'.$nome.'<br><br>
@@ -204,7 +204,7 @@
                     </div>';
 
 
-                    echo "<table border='1' style='text-align:center; width: 1400px; margin: 6%   ;'><tr><th>Username</th><th>Nome</th><br><th>Data Nascimento</th></tr>";
+                    echo "<div style='padding: auto;' ><table border='1' style='text-align:center; width: 450px; height: auto; margin: 6%; margin-top:17%'><tr><th>Username</th><th>Nome</th><br><th>Data Nascimento</th></tr>";
                     // Liga a tabela na base de dados
                     $sql = 'SELECT u.username, u.nome, u.data_nasc
                             FROM utilizador u
@@ -227,7 +227,7 @@
                             echo "</tr>";
                         }
                     
-                    echo "</table><br/>";
+                    echo "</table><br/><div/>";
                     mysqli_close($conn);
 
                 }

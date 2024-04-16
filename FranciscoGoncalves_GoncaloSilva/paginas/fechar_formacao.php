@@ -19,7 +19,7 @@
 
     //Validar inscricoes
     switch ($criterio) {
-        case "data_inscricao":
+        case "Data Inscrição":
                 $sql="UPDATE inscricao
                 SET estado = 'aceite'
                 WHERE nome = '".$nome."' AND username IN (
@@ -33,7 +33,7 @@
                     ) AS subquery
                 );";
             break;
-        case "ordem_alfabetica":
+        case "Ordem Alfabética":
             $sql="UPDATE inscricao
                 SET estado = 'aceite'
                 WHERE nome = '".$nome."' AND username IN (
@@ -52,7 +52,7 @@
                 );
                 ";            
             break;
-        case "maior_idade":
+        case "Maior Idade":
             $sql="UPDATE inscricao
                 SET estado = 'aceite'
                 WHERE nome = '".$nome."' AND username IN (
@@ -70,7 +70,7 @@
                     ) AS subquery
                 );";            
             break;
-        case "menor_idade":
+        case "Menor Idade":
             $sql="UPDATE inscricao
                 SET estado = 'aceite'
                 WHERE nome = '".$nome."' AND username IN (

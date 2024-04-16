@@ -113,10 +113,10 @@
                         Vagas: <input type="number" style="margin-left: 95px;" name="vagas" required><br><br>
                         Data de Fecho: <input type="date" name="data_fecho" style="margin-left: 35px;" required><br><br>
                         Criterio Seleção<select id="opcoes" name="criterio" style="margin-left: 35px;" required>
-                            <option value="data_inscricao">Data Inscrição</option>
-                            <option value="ordem_alfabetica">Ordem Alfabética</option>
-                            <option value="maior_idade">Maior Idade</option>
-                            <option value="menor_idade">Menor Idade</option>
+                            <option value="Data Inscrição">Data Inscrição</option>
+                            <option value="Ordem Alfabética">Ordem Alfabética</option>
+                            <option value="Maior Idade">Maior Idade</option>
+                            <option value="Menor Idade">Menor Idade</option>
                         </select>
                         <br><br><br><br>   
 
