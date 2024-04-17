@@ -115,7 +115,7 @@
 <!--------------------------------------------------------------------------------------------------------------------------------->
                 <?php
                 echo '<div id="direita" style="width:100%; padding-top: 60px;padding-bottom: 60px; padding-left: 50px;text-align: left;margin-left: 33%;">
-                    <form method="post" action="formacao.php">
+                    <form method="post" action="editar_utilizadores.php?utilizador='.$utilizador.'">
 
                                 Nome de Utilizador: <th>'.$utilizador.'<br><br>
                                 Nome: <input type="text" style="margin-left: 95px;" name="nome" value="'.$nome.'"><br><br>
