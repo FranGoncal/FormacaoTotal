@@ -121,8 +121,8 @@
                   </div>
       
                   <div style="border-left : 1px solid #999999;width: 50%; padding-top: 60px;padding-bottom: 60px;text-align: center;margin-bottom: 10px;">
-                      <a href="gerirInscricoes.php" style="cursor: pointer;">
-                          <div><img src="livros.png" style="width: 250px; height:250px;margin-bottom: 24px;" alt="Search Icon" class="search-icon"></div>
+                      <a href="gerir_utilizadores.php" style="cursor: pointer;">
+                          <div><img src="users.png" style="width: 250px; height:250px;margin-bottom: 24px;" alt="Search Icon" class="search-icon"></div>
                           
                           <div><button class="botao" name ="submit" type="submit">Gerir Utilizadores</button></div>
                       </a>

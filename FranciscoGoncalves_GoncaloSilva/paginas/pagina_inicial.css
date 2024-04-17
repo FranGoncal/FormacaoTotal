@@ -124,3 +124,19 @@ body {
   background-color: #727272;
 }
 
+
+.botao_apagar {
+  text-decoration: none; 
+  color: #FFFFFF;
+  font-weight: bold;
+  padding: 10px 20px; 
+  border: 2px solid #6b0707; 
+  border-radius: 8px;
+  cursor: pointer;
+  background-color: #910000;
+}
+
+.botao_apagar:hover {
+  background-color: #700101;
+  color: #f0f0f0;
+}
