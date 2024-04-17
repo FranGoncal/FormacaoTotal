@@ -186,8 +186,9 @@
                             }else{//Caso a dataFecho não tenha passado (cinzento)
                               echo '<div style="margin-left: 100px;"><button class="botao_off" type="submit" onclick="alert(\'A Data limite ainda não passou\')">Fechar Formação</button></div>';
                             }
-                            
-                            echo '</div>';
+                            echo '<br>
+                                  <a href="apagar_formacao.php?nome='.$nome.'"><div style="margin-left: 100px;"><button class="botao_apagar" name="apagar">Apagar Formação</button></div></a>
+                            </div>';
                 }         
                 else{
                     echo '
@@ -230,8 +231,10 @@
                     echo "</table><br/><div/>";
                     mysqli_close($conn);
 
+                    echo '<br>
+                                  <a href="apagar_formacao.php?nome='.$nome.'"><div style="margin-left: 150px;"><button class="botao_apagar" name="apagar">Apagar Formação</button></div></a>';
                 }
-                
+                  
                     ?>
             </div>     
         </div>

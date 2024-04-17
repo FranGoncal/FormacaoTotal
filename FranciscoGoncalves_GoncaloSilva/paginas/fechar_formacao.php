@@ -27,7 +27,7 @@
                     FROM (
                         SELECT username
                         FROM inscricao
-                        WHERE nome = 'HTML'
+                        WHERE nome = '".$nome."'
                         ORDER BY data_inscricao
                         LIMIT ".$vagas."
                     ) AS subquery

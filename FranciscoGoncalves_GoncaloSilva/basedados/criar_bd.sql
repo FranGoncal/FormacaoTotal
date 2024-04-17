@@ -44,8 +44,8 @@ INSERT INTO utilizador (username, nome, data_nasc, palavra_passe, nivel) VALUES
 ('utilizador6', 'Utilizador 6', '1982-06-06', 'password6', 'cliente');
 
 INSERT INTO formacao (nome, num_maximo, esta_fechada, criterio_selecao, data_Fecho, username) VALUES
-('Java', 50, false, "Data inscrição", "2025-01-01", 'docente'),
-('PHP', 10, false, "Data inscrição", "2025-01-01", 'docente'),
+('Java', 50, false, "Data Inscrição", "2025-01-01", 'docente'),
+('PHP', 10, false, "Data Inscrição", "2025-01-01", 'docente'),
 ('PHP2', 10, false, "Ordem Alfabética", "2025-01-01", 'docente'),
 ('PHP3', 20, false, "Menor Idade", "2025-01-01", 'docente'),
 ('HTML', 20, false, "Maior Idade", "2025-01-01", 'docente');
