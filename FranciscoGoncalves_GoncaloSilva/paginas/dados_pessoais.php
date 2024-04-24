@@ -21,26 +21,18 @@
   
   
   if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $username_novo  = $_POST['username'];
     $nome = $_POST['nome'];
     $data_nasc = $_POST['data_nasc'];
-    //Validar o username (ser unico ou ser ele proprio)
     
-    if(usernameValido($username_novo, $conn) || $username_novo == $username ){
-        $sql = "UPDATE utilizador SET username='$username_novo', nome='".$nome."', data_nasc='".$data_nasc."' WHERE username='".$username."'";
-        if ($conn->query($sql) === TRUE) {
-            //echo "Dados atualizados com sucesso!";
-            $_SESSION['username']=$username_novo;
-            echo" <script>alert('Editado com sucesso!');</script>";
-        } else {
-            //echo "Erro ao atualizar os dados: " . $conn->error;
-            echo" <script>alert('Editado sem sucesso :(!');</script>";
-        }
+    $sql = "UPDATE utilizador SET nome='".$nome."', data_nasc='".$data_nasc."' WHERE username='".$username."'";
+    if ($conn->query($sql) === TRUE) {
+        //echo "Dados atualizados com sucesso!";
+        echo" <script>alert('Editado com sucesso!');</script>";
+    } else {
+        //echo "Erro ao atualizar os dados: " . $conn->error;
+        echo" <script>alert('Editado sem sucesso :(!');</script>";
     }
-    else{
-        $mensagem_erro='<font color="red">Credenciais incorretas</font>';
-        //header('Location: dados_pessoais.php');
-    }
+
     
     //exit();
   }
