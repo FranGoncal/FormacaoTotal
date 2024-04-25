@@ -1,8 +1,13 @@
 <?php 
   session_start();
-    if(isset($_GET['nome'])){
-        $_SESSION['nome']=$_GET['nome'];
-    }
+
+  if( $_SESSION['nivel'] != "aluno" ){
+      header("Location: logout.php");
+  }
+
+  if(isset($_GET['nome'])){
+      $_SESSION['nome']=$_GET['nome'];
+  }
 
 
   $nome = $_SESSION['nome'];
@@ -21,29 +26,11 @@
       $criterio = $row["criterio_selecao"];
       $data_fecho = $row["data_fecho"];
       $responsavel = $row["username"];
+      $descricao = $row["descricao"];
   } else {
       echo "Nenhuma formação encontrada!";
       exit();
   }
-  
-  /* 
-  if (isset($_POST['submit'])) {
-    $vagas  = $_POST['num_maximo'];
-    $data_fecho = $_POST['data_fecho'];
-    $criterio = $_POST['criterio_selecao'];
-    
-
-    $sql = "UPDATE formacao SET num_maximo='$vagas', data_fecho='".$data_fecho."', criterio_selecao='".$criterio."' WHERE nome='".$nome."'";
-    if ($conn->query($sql) === TRUE) {
-        //echo "Dados atualizados com sucesso!";
-        echo" <script>alert('Atualizado com sucesso!');</script>";
-    } else {
-        //echo "Erro ao atualizar os dados: " . $conn->error;
-        echo" <script>alert('Atualizado sem sucesso :(!');</script>";
-    }
-    
-    //exit();
-  }*/
 
 ?>
 
@@ -63,7 +50,7 @@
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
     <div class="container">
       <?php
-        if($_SESSION['nivel']=="cliente")
+        if($_SESSION['nivel']=="aluno")
           echo'<a class="navbar-brand" href="pagina_inicial.php">Formação Total</a>';
         else 
           echo '<a class="navbar-brand" href="pagina_inicial_adm.php">Formação Total</a>';
@@ -125,7 +112,7 @@
                     $estadoFormacao = "Aberta";
 
                 echo '
-                <div id="direita" style="width:100%; padding-top: 60px;padding-bottom: 60px; padding-left: 50px;text-align: left;margin-left: 33%;">
+                <div id="direita" style="width:50%; padding-top: 60px;padding-bottom: 60px; padding-left: 50px;text-align: left;margin-left: 8%;">
                    
                 Nome da Formação: <th>'.$nome.'<br><br>
                 Vagas: <th>'.$vagas.'<br><br>
@@ -145,7 +132,7 @@
                 
 
                 if(mysqli_num_rows($retval) == 0 && $esta_fechada){
-                    echo '<div style="margin-left: 100px;"><button class="botao_pesquisa">Fechada</button></div>';
+                    echo '<div style="margin-left: 100px;"><button class="botao_cinzento">Fechada</button></div>';
                 }
                 else if ( mysqli_num_rows($retval) == 0){            
                             echo '<a href="inscricao.php?nome='.$nome.'&valor=inscrever"><div style="margin-left: 100px;"><button class="botao" name="fechar">Inscrever</button></div></a>';
@@ -154,9 +141,21 @@
                     echo '<div style="margin-left: 100px;"><button class="botao_verde">Aceite</button></div>';
                 }                 
                 else{
-                            echo '<a href="inscricao.php?nome='.$nome.'&valor=desinscrever"><div style="margin-left: 100px;"><button class="botao_apagar" name="fechar">Desinscrever</button></div></a>';
+                            echo '<a href="inscricao.php?nome='.$nome.'&valor=desinscrever"><div style="margin-left: 100px;"><button class="botao_vermelho" name="fechar">Desinscrever</button></div></a>';
                 }
                     ?>
+                </div>
+                <div style="width: 50%; margin-right: 10px; margin-top: 45px;">
+                    <h5>
+                        Descrição:
+                    </h5>
+                    <div style="border: 1px solid #07416b; margin: 15px;">
+                        <?php
+                            echo $descricao;
+                        ?>   
+                    </div>
+                    
+                </div> 
             </div>     
         </div>
     </div>

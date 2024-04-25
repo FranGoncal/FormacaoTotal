@@ -1,5 +1,9 @@
 <?php 
   session_start();
+  if( $_SESSION['nivel'] != "admin" && $_SESSION['nivel'] != "docente"){
+      header("Location: logout.php");
+  }
+
   $nome = $_SESSION['username'];
 ?>
 

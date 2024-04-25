@@ -1,4 +1,9 @@
 <?php
+    session_start();
+    if( $_SESSION['nivel'] != "docente" || $_SESSION['nivel'] != "admin" ){
+        header("Location: logout.php");
+    }
+
     $vagas = $_GET['vagas'];
     $nome = $_GET['nome'];
     $criterio = $_GET['criterio'];

@@ -2,7 +2,6 @@
 
   $username = isset($_POST["username"]) ? $_POST["username"] : "";
   $password = isset($_POST["palavra_passe"]) ? $_POST["palavra_passe"] : "";
-  $mensagem_erro = "";
   
   if(isset($_POST["submit"])) {
     // Ligar à base de dados
@@ -23,21 +22,24 @@
           session_start();
           $_SESSION['username']=$username;
           $_SESSION['nivel']=$row['nivel'];
-          if($row['nivel']=="cliente")
+          if($row['nivel']=="aluno")
             header("Location: pagina_inicial.php");
           else if($row['nivel']=="admin" || $row['nivel']=="docente")
             header("Location: pagina_inicial_adm.php");
-          else
-            header("Location: int_erro.html");
-          exit();
-        
+          else{
+            echo"<script>
+                    if(confirm('Este acesso não foi autorizado!')){
+                        window.location.href = 'logout.php';
+                    }
+                </script>";
+          }
       } else {
           //Se a $row não contiver um valor 
-          $mensagem_erro = '<font color="red">Erro ao obter dados do utilizador</font>';
+          echo" <script>alert('Erro ao obter os dados do utilizador! :(');</script>";
       }
     } else {
         //Se não encontrou o username na base de dados com a password correta
-        $mensagem_erro = '<font color="red">Credenciais incorretas</font>';
+        echo" <script>alert('Credenciais incorretas! :(');</script>";
     }
     mysqli_close($conn);
   }

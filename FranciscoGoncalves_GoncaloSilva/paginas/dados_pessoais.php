@@ -1,6 +1,9 @@
 <?php 
   session_start();
-  $mensagem_erro = "";
+
+  if( $_SESSION['nivel'] != "aluno" || $_SESSION['nivel'] != "docente" || $_SESSION['nivel'] != "admin" ){
+      header("Location: logout.php");
+  }
 
   $username = $_SESSION['username'];
   
@@ -66,7 +69,7 @@
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
     <div class="container">
       <?php
-        if($_SESSION['nivel']=="cliente")
+        if($_SESSION['nivel']=="aluno")
           echo'<a class="navbar-brand" href="pagina_inicial.php">Formação Total</a>';
         else 
           echo '<a class="navbar-brand" href="pagina_inicial_adm.php">Formação Total</a>';
@@ -127,7 +130,6 @@
                 <div id="direita" style="width:50%; padding-top: 60px;padding-bottom: 60px; padding-left: 50px;text-align: left;">
                     
                     <form method="post" action="dados_pessoais.php">
-                        <center><?php echo $mensagem_erro; ?></center>
                         Nome de Utilizador: <th><?php echo $_SESSION['username']; ?><br><br>
                         Nome: <input type="text" style="margin-left: 95px;" name="nome" value="<?php echo $nome; ?>"><br><br>
                         Data de Nascimento: <input type="date" name="data_nasc" value="<?php echo $data_nasc; ?>"><br><br><br><br>

@@ -21,7 +21,7 @@
       <?php
         //Validação de que a Sessao esta iniciada, caso não esteja tamos o valor do nivel vazio.
         $nivel = isset($_SESSION['nivel']) ? $_SESSION['nivel'] : "";
-        if($nivel =='cliente')
+        if($nivel =='aluno')
           echo '<a class="navbar-brand" href="pagina_inicial.php">Formação Total</a>';
         else
           echo '<a class="navbar-brand" href="pagina_inicial_adm.php">Formação Total</a>';

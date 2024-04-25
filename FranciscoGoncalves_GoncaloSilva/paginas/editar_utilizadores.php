@@ -1,5 +1,8 @@
 <?php 
   session_start();
+  if( $_SESSION['nivel'] != "admin" ){
+    header("Location: logout.php");
+  }
 
     //TODO confirmar se o get ta setado e se não tiver fazer algo quanto a isso
 
@@ -59,7 +62,7 @@
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
     <div class="container">
       <?php
-        if($_SESSION['nivel']=="cliente")
+        if($_SESSION['nivel']=="aluno")
           echo'<a class="navbar-brand" href="pagina_inicial.php">Formação Total</a>';
         else 
           echo '<a class="navbar-brand" href="pagina_inicial_adm.php">Formação Total</a>';
@@ -129,7 +132,7 @@
 
                             //a pagina validar.php é usada para apagar a conta, passando o nivel no $_GET
                             if(!($nivel == "apagado")){//Caso a dataFecho tenha passado
-                                echo '<a href="validar.php?utilizador='.$utilizador.'&nivel=apagado"><div style="margin-left: 100px;"><button class="botao_apagar" name="fechar">Apagar Utilizador</button></div></a>';
+                                echo '<a href="validar.php?utilizador='.$utilizador.'&nivel=apagado"><div style="margin-left: 100px;"><button class="botao_vermelho" name="fechar">Apagar Utilizador</button></div></a>';
                             }
 
                             ?>

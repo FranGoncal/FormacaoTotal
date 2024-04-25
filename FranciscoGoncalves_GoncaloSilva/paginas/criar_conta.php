@@ -4,7 +4,6 @@
   $username = isset($_POST["username"]) ? $_POST["username"] : "";
   $password = isset($_POST["palavra_passe"]) ? $_POST["palavra_passe"] : "";
   $p_confirmar = isset($_POST["confirmar_senha"]) ? $_POST["confirmar_senha"] : "";
-  $mensagem_erro = "";
   
   if(isset($_POST["submit"])) {
     if($p_confirmar === $password){
@@ -13,7 +12,7 @@
       include '../basedados/basedados.h';
       
       if(usernameValido($username,$conn)){
-        $sql = "INSERT INTO utilizador ( username, palavra_passe, nome, data_nasc, nivel) VALUES ('".$username."', '".md5($password)."', '".$nome."', '".$data_nasc."', 'cliente')";
+        $sql = "INSERT INTO utilizador ( username, palavra_passe, nome, data_nasc, nivel) VALUES ('".$username."', '".md5($password)."', '".$nome."', '".$data_nasc."', 'aluno')";
         $retval = mysqli_query($conn, $sql);
         
         if(mysqli_affected_rows($conn) == 1){//INSERT com sucesso
@@ -25,12 +24,14 @@
           exit();
         }
         else//INSERT falhou
-          $mensagem_erro = '<font color="red">Algo correu mal!!!</font>';
-      } 
-      $mensagem_erro = '<font color="red">Esse nome de utilizador já foi usado!</font>';
+          echo" <script>alert('Algo correu mal! :(');</script>";
+      }
+      else{
+       echo" <script>alert('Esse nome de utilizador já foi usado! :(');</script>"; 
+      }
     }
     else
-      $mensagem_erro = '<font color="red">As palavras-passe não coincidem!</font>';
+      echo" <script>alert('As palavras-passes não coincidem! :(');</script>";
   }
 
   //valida se o username já está em uso
@@ -92,7 +93,6 @@
             <h3 class="text-center">Criar Conta</h3>
           </div>
           <div class="card-body">
-            <center><?php echo $mensagem_erro; ?></center>
             <form action="criar_conta.php" method="post">
               <div class="mb-3">
                 <label for="nome" class="form-label">Nome</label>
@@ -104,11 +104,11 @@
               </div>
               <div class="mb-3">
                 <label for="senha" class="form-label">Palavra-Passe</label>
-                <input required type="password" class="form-control" id="palavra_passe" name="palavra_passe">
+                <input required type="password" class="form-control" id="palavra_passe" name="palavra_passe" minlength="8">
               </div>
               <div class="mb-3">
                 <label for="confirmar_senha" class="form-label">Confirmar Palavra-Passe</label>
-                <input required type="password" class="form-control" id="confirmar_senha" name="confirmar_senha">
+                <input required type="password" class="form-control" id="confirmar_senha" name="confirmar_senha" minlength="8">
               </div>
               <div class="mb-3">
                 <label for="data" class="form-label">Data de Nascimento</label>

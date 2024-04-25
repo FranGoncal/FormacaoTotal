@@ -1,10 +1,13 @@
 <?php 
   session_start();
+  if( $_SESSION['nivel'] != "docente" || $_SESSION['nivel'] != "admin" ){
+    header("Location: logout.php");
+  }
+  
     if(isset($_GET['nome'])){
         $_SESSION['nome']=$_GET['nome'];
     }
 
-  $mensagem_erro = "";
 
   $nome = $_SESSION['nome'];
   
@@ -22,30 +25,40 @@
       $criterio = $row["criterio_selecao"];
       $data_fecho = $row["data_fecho"];
       $responsavel = $row["username"];
+      $descricao = $row["descricao"];
   } else {
       echo "Nenhum utilizador encontrado!";
       exit();
   }
   
   //Só antes do fecho das inscrições
-  if (isset($_POST['submit'])) {        // && $data_fecho < date('Y-m-d')
+  if (isset($_POST['submit'])) {
     $vagas  = $_POST['num_maximo'];
     $data_fecho = $_POST['data_fecho'];
     $criterio = $_POST['criterio_selecao'];
+    $descricao = $_POST['descricao'];
     
-
-    $sql = "UPDATE formacao SET num_maximo='$vagas', data_fecho='".$data_fecho."', criterio_selecao='".$criterio."' WHERE nome='".$nome."'";
-    if ($conn->query($sql) === TRUE) {
-        //echo "Dados atualizados com sucesso!";
-        echo" <script>alert('Atualizado com sucesso!');</script>";
-    } else {
-        //echo "Erro ao atualizar os dados: " . $conn->error;
-        echo" <script>alert('Atualizado sem sucesso :(!');</script>";
+    if(nVagasValido($vagas)){
+      $sql = "UPDATE formacao SET num_maximo='".$vagas."',descricao ='".$descricao."' ,data_fecho='".$data_fecho."', criterio_selecao='".$criterio."' WHERE nome='".$nome."'";
+      if ($conn->query($sql) === TRUE) {
+          //echo "Dados atualizados com sucesso!";
+          echo" <script>alert('Atualizado com sucesso!');</script>";
+      } else {
+          //echo "Erro ao atualizar os dados: " . $conn->error;
+          echo" <script>alert('Atualizado sem sucesso :(!');</script>";
+      }
     }
-    
-    //exit();
+    else{
+      echo" <script>alert('Número de vagas inválido!');</script>";
+    }
   }
 
+  function nVagasValido($vagas){
+    if ($vagas > 0){
+      return true;
+    }
+    return false;
+  }
 ?>
 
 <!DOCTYPE html>
@@ -64,7 +77,7 @@
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
     <div class="container">
       <?php
-        if($_SESSION['nivel']=="cliente")
+        if($_SESSION['nivel']=="aluno")
           echo'<a class="navbar-brand" href="pagina_inicial.php">Formação Total</a>';
         else 
           echo '<a class="navbar-brand" href="pagina_inicial_adm.php">Formação Total</a>';
@@ -132,7 +145,6 @@
                     echo '
                     <div id="direita" style="width:100%; padding-top: 60px;padding-bottom: 60px; padding-left: 50px;text-align: left;margin-left: 33%;">
                     <form method="post" action="formacao.php">
-                                <center>'.$mensagem_erro.'</center>
 
                                 Nome da Formação: <th>'.$nome.'<br><br>
                                 Vagas: <input type="text" style="margin-left: 95px;" name="num_maximo" value="'.$vagas.'"><br><br>
@@ -172,8 +184,17 @@
                                     
                                 echo '</select><br><br>
 
-                                Docente: <th>'.$responsavel.'<br><br>
+                                Docente: <th>'.$responsavel.'
+                                <div style="width: 50%; margin-right: 10px; margin-top: 45px;">
+
+                                <h5>
+                                    Descrição:
+                                </h5>
                                 
+                                    <textarea id="texto" name="descricao" rows="7" cols="45">'.$descricao.'</textarea>
+                                    <br><br>       
+                                         
+                            </div> 
                                 
                                 <div style="margin-left: 130px;"><button class="botao" name="submit" type="submit">Atualizar</button></div>
                                 <br>';
@@ -187,20 +208,24 @@
                               echo '<div style="margin-left: 100px;"><button class="botao_off" type="submit" onclick="alert(\'A Data limite ainda não passou\')">Fechar Formação</button></div>';
                             }
                             echo '<br>
-                                  <a href="apagar_formacao.php?nome='.$nome.'"><div style="margin-left: 100px;"><button class="botao_apagar" name="apagar">Apagar Formação</button></div></a>
+                                  <a href="apagar_formacao.php?nome='.$nome.'"><div style="margin-left: 100px;"><button class="botao_vermelho" name="apagar">Apagar Formação</button></div></a>
                             </div>';
                 }         
                 else{
                     echo '
                     <div id="direita" style="width: 400px; max-width: 450px;padding-top: 60px;padding-bottom: 60px; padding-left: 60px;text-align: left;margin: 6%;">
                     <div>
-                                <center>'.$mensagem_erro.'</center>
                                 Nome da Formação: <th>'.$nome.'<br><br>
                                 Vagas: '.$vagas.'<br><br>
                                 Esta Fechado: <th>'.$estadoFormacao.'<br><br>
                                 Data Fecho:'.$data_fecho.'<br><br>
                                 Critério Seleção: '.$criterio.'<br><br>
                                 Docente: <th>'.$responsavel.'<br><br>
+
+                                <h5>
+                                    Descrição:
+                                </h5>
+                                <div style="border: 1px solid #07416b;">'.$descricao.'</div>
                     </div>
                     </div>';
 
@@ -232,7 +257,7 @@
                     mysqli_close($conn);
 
                     echo '<br>
-                                  <a href="apagar_formacao.php?nome='.$nome.'"><div style="margin-left: 150px;"><button class="botao_apagar" name="apagar">Apagar Formação</button></div></a>';
+                                  <a href="apagar_formacao.php?nome='.$nome.'"><div style="margin-left: 150px;"><button class="botao_vermelho" name="apagar">Apagar Formação</button></div></a>';
                 }
                   
                     ?>

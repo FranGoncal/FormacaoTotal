@@ -1,5 +1,8 @@
 <?php 
   session_start();
+  if( $_SESSION['nivel'] != "aluno" && $_SESSION['nivel'] != "docente"){
+      header("Location: logout.php");
+  }
 ?>
 
 <!DOCTYPE html>

@@ -1,5 +1,9 @@
 <?php 
   session_start();
+  if( $_SESSION['nivel'] != "aluno" ){
+      header("Location: logout.php");
+  }
+
   $nome = $_SESSION['username'];
 ?>
 
@@ -83,7 +87,7 @@
                     
                     <div style="background-color: #cccccc; border-radius: 20px;border: 1px solid #02365c; padding-left: 12px;padding-right: 10px;">
                         <input type="text" name="nome" placeholder="A sua pesquisa..." style="height: 30px;border: 0px;background-color: #dddddd;margin: 2px;">
-                        <Button class="botao_pesquisa" name="submit" type="submit" style="height: 30px;">Pesquisar</Button>
+                        <Button class="botao_cinzento" name="submit" type="submit" style="height: 30px;">Pesquisar</Button>
                     </div>
                     
                 </div>

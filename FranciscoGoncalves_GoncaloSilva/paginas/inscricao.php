@@ -1,5 +1,8 @@
 <?php
     session_start();
+    if( $_SESSION['nivel'] != "aluno" ){
+        header("Location: logout.php");
+    }
     $valor = $_GET['valor'];
     $nome = $_GET['nome'];
 

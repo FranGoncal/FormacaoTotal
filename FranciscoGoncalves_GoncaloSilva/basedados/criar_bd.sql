@@ -34,15 +34,15 @@ CREATE TABLE inscricao(
 ALTER TABLE inscricao ADD CONSTRAINT PK_inscricao PRIMARY KEY(username, nome);
 
 INSERT INTO utilizador (username, nome, data_nasc, palavra_passe, nivel) VALUES
-('aluno', 'aluno', '1990-01-01', 'ca0cd09a12abade3bf0777574d9f987f ', 'cliente'),
+('aluno', 'aluno', '1990-01-01', 'ca0cd09a12abade3bf0777574d9f987f ', 'aluno'),
 ('docente', 'docente', '1992-02-02', 'ac99fecf6fcb8c25d18788d14a5384ee ', 'docente'),
 ('admin', 'admin', '1995-03-03', '21232f297a57a5a743894a0e4a801fc3 ', 'admin'),
-('utilizador1', 'Utilizador 1', '1988-04-04', 'password1', 'cliente'),
-('utilizador2', 'Utilizador 2', '1988-04-02', 'password2', 'cliente'),
-('utilizador3', 'Utilizador 3', '1988-04-03', 'password3', 'cliente'),
-('utilizador4', 'Utilizador 4', '1988-04-04', 'password4', 'cliente'),
-('utilizador5', 'Utilizador 5', '1985-05-05', 'password5', 'cliente'),
-('utilizador6', 'Utilizador 6', '1982-06-06', 'password6', 'cliente');
+('utilizador1', 'Utilizador 1', '1988-04-04', 'password1', 'aluno'),
+('utilizador2', 'Utilizador 2', '1988-04-02', 'password2', 'aluno'),
+('utilizador3', 'Utilizador 3', '1988-04-03', 'password3', 'aluno'),
+('utilizador4', 'Utilizador 4', '1988-04-04', 'password4', 'aluno'),
+('utilizador5', 'Utilizador 5', '1985-05-05', 'password5', 'aluno'),
+('utilizador6', 'Utilizador 6', '1982-06-06', 'password6', 'aluno');
 
 INSERT INTO formacao (nome, num_maximo, esta_fechada, criterio_selecao, data_Fecho, username ,descricao) VALUES
 ('Java', 50, false, "Data Inscrição", "2020-01-01", 'docente', 'Esta formação meramente para fins académicos destina-se aos alunos que tenham curiosidade na área da informática e que gostam deste estilo de conteudos. Considere a sua inscrição!'),

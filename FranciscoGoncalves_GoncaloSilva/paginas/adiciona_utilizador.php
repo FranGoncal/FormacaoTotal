@@ -1,8 +1,9 @@
 <?php 
-  
-  // Ligar à base de dados
-  include '../basedados/basedados.h';
-  
+  session_start();
+  if( $_SESSION['nivel'] != "admin" ){
+    header("Location: logout.php");
+  }
+
   if(isset($_POST["submit"])) {
 
     $data_nasc = $_POST["data_nasc"];
@@ -30,12 +31,13 @@
           exit();
         }
         else//INSERT falhou
-          $mensagem_erro = '<font color="red">Algo correu mal!!!</font>';
+          echo" <script>alert('Algo correu mal! :(');</script>";
       } 
-      $mensagem_erro = '<font color="red">Esse nome de utilizador já foi usado!</font>';
+      echo" <script>alert('Esse nome de utilizador já existe! :(');</script>";
     }
     else
-      $mensagem_erro = '<font color="red">As palavras-passe não coincidem!</font>';
+      echo" <script>alert('As palavras-passes não coincidem! :(');</script>";
+    
   }
 
   //valida se o username já está em uso
@@ -110,7 +112,7 @@
                     <form method="post" action="adiciona_utilizador.php">
                         Nome: <th><input type="text" name="nome" style="margin-left: 140px;" required><br><br>
                         Nome de Utilizador: <input type="text" style="margin-left: 48px;" name="username" required><br><br>
-                        Palavra-Passe : <input type="password" name="password" style="margin-left: 75px;" required><br><br>
+                        Palavra-Passe : <input type="password" name="password" style="margin-left: 75px;" required minlength="8"><br><br>
                         Confirmar Palavra-Passe: <input type="password" name="confirmar_senha" style="margin-left: 5px;" required><br><br>
                         Data de Nascimento : <input type="date" name="data_nasc" style="margin-left: 35px;" required><br><br>
                         Nivel: <input type="text" name="nivel" style="margin-left: 149px;" required><br><br>

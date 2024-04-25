@@ -1,5 +1,8 @@
 <?php 
   session_start();
+  if( $_SESSION['nivel'] != "admin" ){
+      header("Location: logout.php");
+  }
 ?>
 
 <!DOCTYPE html>

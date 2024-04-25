@@ -1,7 +1,10 @@
 <?php 
   session_start();
-  $mensagem_erro = "";
 
+  if($_SESSION['nivel'] != "docente" || $_SESSION['nivel'] != "admin"){
+    header("Location: logout.php");
+  }
+  
   $username = $_SESSION['username'];
    
   // Ligar à base de dados
@@ -14,25 +17,26 @@
     $vagas = $_POST['vagas'];
     $data_fecho = $_POST['data_fecho'];
     $criterio_selecao= $_POST["criterio"];
+    $descricao= $_POST["descricao"];
 
-    if(formacaoValida($nome,$conn)){
-
-
-    
-    $sql = "INSERT INTO formacao (nome, num_maximo, esta_fechada, criterio_selecao, data_Fecho, username) VALUES
-    ('".$nome."', '".$vagas."', false, '".$criterio_selecao."', '".$data_fecho."', '".$username."')";
-    $retval = mysqli_query($conn, $sql);
+    if(formacaoValida($nome,$conn) && nVagasValido($vagas)){
+      $sql = "INSERT INTO formacao (nome, num_maximo, esta_fechada, criterio_selecao, data_Fecho, username, descricao) VALUES
+      ('".$nome."', '".$vagas."', false, '".$criterio_selecao."', '".$data_fecho."', '".$username."', '".$descricao."')";
+      $retval = mysqli_query($conn, $sql);
             
-    if(mysqli_affected_rows($conn) == 1){//INSERT com sucesso
-        echo "<script>
-                if(confirm('Conta criada com sucesso!')){
-                    window.location.href = 'gestao_formacoes.php';
-                }
-            </script>";
-        exit();
-    }
-    else//INSERT falhou
-        $mensagem_erro = '<font color="red">Algo correu mal!!!</font>';
+      if(mysqli_affected_rows($conn) == 1){//INSERT com sucesso
+          echo "<script>
+                  if(confirm('Formação criada com sucesso!')){
+                      window.location.href = 'gestao_formacoes.php';
+                  }
+              </script>";
+          exit();
+      }
+      else//INSERT falhou
+        echo" <script>alert('Algo correu mal! :(');</script>";
+      }
+    else if(!nVagasValido($vagas)){
+      echo" <script>alert('Número de vagas inválido!');</script>";
     }
     else{
       echo" <script>alert('Essa formação já Existe! :(');</script>";
@@ -48,6 +52,12 @@
     if(mysqli_num_rows($retval) > 0)
       return false;
     return true;
+  }
+  function nVagasValido($vagas){
+    if ($vagas > 0){
+      return true;
+    }
+    return false;
   }
 
 ?>
@@ -108,7 +118,6 @@
                 <div id="direita" style="width:50%; padding-top: 60px;padding-bottom: 60px; padding-left: 50px;text-align: left;">
                     
                     <form method="post" action="adiciona_formacao.php">
-                        <center><?php echo $mensagem_erro; ?></center>
                         Nome da Formação: <th><input type="text" name="nome" required><br><br>
                         Vagas: <input type="number" style="margin-left: 95px;" name="vagas" required><br><br>
                         Data de Fecho: <input type="date" name="data_fecho" style="margin-left: 35px;" required><br><br>
@@ -118,6 +127,11 @@
                             <option value="Maior Idade">Maior Idade</option>
                             <option value="Menor Idade">Menor Idade</option>
                         </select>
+                        <br><br> 
+                        <h6>
+                          Descrição:
+                        </h6>    
+                        <textarea id="texto" name="descricao" rows="7" cols="45">Escreva uma descrição do curso...</textarea>
                         <br><br><br><br>   
 
                         <div style="margin-left: 100px;"><button class="botao" name="submit" type="submit">Criar</button></div>
