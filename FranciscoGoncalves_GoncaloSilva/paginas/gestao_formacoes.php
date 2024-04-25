@@ -84,12 +84,13 @@
                         die('Could not connect: ' . mysqli_error($conn)); /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
                     }
                     // Cria a tabela
-                    echo "<table border='1' style='text-align:center; width: 1100px;'><tr><th>Nome</th><th>Vagas</th><br><th>Inscrições</th><th>Data Fecho</th><th>Critério</th></tr>";
+                    echo "<table border='1' style='text-align:center; width: 1000px;'><tr><th>Nome</th><th>Vagas</th><br><th>Inscrições</th><th>Data Fecho</th><th>Critério</th><th>Estado</th></tr>";
                     // Liga a tabela na base de dados
                     $sql = 'SELECT 
                                 f.nome AS nome,
                                 f.data_fecho AS data_fecho,
                                 f.criterio_selecao AS criterio_selecao,
+                                f.esta_fechada AS esta_fechada,
                                 f.num_maximo AS numMax,
                                 COUNT(i.nome) AS numInscricoes
                             FROM 
@@ -111,11 +112,16 @@
                     
                         while($row = mysqli_fetch_array($retval)){// vai buscar ha base de dados os dados nela guardada e poem os na tabela	
                             echo "<tr onclick=\"window.location='formacao.php?nome=".$row['nome']."';\" style='cursor:pointer;'>";
-                            echo "<td style='width: 20%'>".$row['nome']."</td>";
-                            echo "<td style='width: 20%'>".$row['numMax']."</td>";
+                            echo "<td style='width: 10%'>".$row['nome']."</td>";
+                            echo "<td style='width: 15%'>".$row['numMax']."</td>";
                             echo "<td style='width: 20%'>".$row['numInscricoes']."</td>";
-                            echo "<td style='width: 20%'>".$row['data_fecho']."</td>";
+                            echo "<td style='width: 25%'>".$row['data_fecho']."</td>";
                             echo "<td style='width: 20%'>".$row['criterio_selecao']."</td>";
+                            if($row['esta_fechada'])
+                              $estado = "Fechada";
+                            else
+                              $estado = "Aberta";
+                            echo "<td style='width: 20%'>".$estado."</td>";
                             echo "</tr>";
                         }
                     

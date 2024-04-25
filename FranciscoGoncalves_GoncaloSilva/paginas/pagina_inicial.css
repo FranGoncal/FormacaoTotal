@@ -157,3 +157,14 @@ background-color: #cfcfcf;
 background-color: #b4b3b3;
 color: #f0f0f0;
 }
+
+.botao_verde {
+  text-decoration: none; 
+  color: #ffffff;
+  font-weight: bold;
+  padding: 0px 20px; 
+  border: 0px; 
+  border-radius: 8px;
+  cursor: pointer;
+  background-color: #007009;
+  }

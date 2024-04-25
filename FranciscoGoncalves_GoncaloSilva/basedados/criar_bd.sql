@@ -18,6 +18,7 @@ CREATE TABLE formacao(
     criterio_selecao VARCHAR(40),
     data_fecho DATE,
     username VARCHAR(40),
+    descricao TEXT,
     FOREIGN KEY(username) REFERENCES utilizador(username)
 );
 
@@ -43,12 +44,12 @@ INSERT INTO utilizador (username, nome, data_nasc, palavra_passe, nivel) VALUES
 ('utilizador5', 'Utilizador 5', '1985-05-05', 'password5', 'cliente'),
 ('utilizador6', 'Utilizador 6', '1982-06-06', 'password6', 'cliente');
 
-INSERT INTO formacao (nome, num_maximo, esta_fechada, criterio_selecao, data_Fecho, username) VALUES
-('Java', 50, false, "Data Inscrição", "2025-01-01", 'docente'),
-('PHP', 10, false, "Data Inscrição", "2025-01-01", 'docente'),
-('PHP2', 10, false, "Ordem Alfabética", "2025-01-01", 'docente'),
-('PHP3', 20, false, "Menor Idade", "2025-01-01", 'docente'),
-('HTML', 20, false, "Maior Idade", "2025-01-01", 'docente');
+INSERT INTO formacao (nome, num_maximo, esta_fechada, criterio_selecao, data_Fecho, username ,descricao) VALUES
+('Java', 50, false, "Data Inscrição", "2020-01-01", 'docente', 'Esta formação meramente para fins académicos destina-se aos alunos que tenham curiosidade na área da informática e que gostam deste estilo de conteudos. Considere a sua inscrição!'),
+('PHP', 10, false, "Data Inscrição", "2022-01-01", 'docente', 'Esta formação meramente para fins académicos destina-se aos alunos que tenham curiosidade na área da informática e que gostam deste estilo de conteudos. Considere a sua inscrição!'),
+('PHP2', 10, false, "Ordem Alfabética", "2023-01-01", 'docente', 'Esta formação meramente para fins académicos destina-se aos alunos que tenham curiosidade na área da informática e que gostam deste estilo de conteudos. Considere a sua inscrição!'),
+('PHP3', 20, false, "Menor Idade", "2024-12-12", 'docente', 'Esta formação meramente para fins académicos destina-se aos alunos que tenham curiosidade na área da informática e que gostam deste estilo de conteudos. Considere a sua inscrição!'),
+('HTML', 20, false, "Maior Idade", "2025-01-01", 'docente', 'Esta formação meramente para fins académicos destina-se aos alunos que tenham curiosidade na área da informática e que gostam deste estilo de conteudos. Considere a sua inscrição!');
 
 INSERT INTO inscricao (username, estado, nome, data_inscricao) VALUES
 ('aluno', 'pendente','HTML', CURDATE()),

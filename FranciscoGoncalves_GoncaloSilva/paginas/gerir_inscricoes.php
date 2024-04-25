@@ -97,7 +97,7 @@
                         die('Could not connect: ' . mysqli_error($conn)); /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
                     }
                     // Cria a tabela
-                    echo "<table border='1' style='text-align:center; width: 1100px;'><tr><th>Nome</th><th>Vagas</th><br><th>Inscrições</th><th>Data Fecho</th><th>Critério</th></tr>";
+                    echo "<table border='1' style='text-align:center; width: 1100px;'><tr><th>Nome</th><th>Vagas</th><br><th>Data Fecho</th><th>Critério</th><th>Estado</th><th>Inscricao</th></tr>";
                     // Liga a tabela na base de dados
                     $nome='';
                     if(!isset($_POST['submit'])){ //caso não tenha pesquisado
@@ -105,8 +105,8 @@
                                     f.nome AS nome,
                                     f.data_fecho AS data_fecho,
                                     f.criterio_selecao AS criterio_selecao,
-                                    f.num_maximo AS numMax,
-                                    COUNT(i.nome) AS numInscricoes
+                                    f.esta_fechada AS esta_fechada,
+                                    f.num_maximo AS numMax
                                 FROM 
                                     formacao f
                                 LEFT JOIN 
@@ -120,8 +120,8 @@
                                     f.nome AS nome,
                                     f.data_fecho AS data_fecho,
                                     f.criterio_selecao AS criterio_selecao,
-                                    f.num_maximo AS numMax,
-                                    COUNT(i.nome) AS numInscricoes
+                                    f.esta_fechada AS esta_fechada,
+                                    f.num_maximo AS numMax
                                 FROM 
                                     formacao f
                                 LEFT JOIN 
@@ -137,8 +137,8 @@
                                     f.nome AS nome,
                                     f.data_fecho AS data_fecho,
                                     f.criterio_selecao AS criterio_selecao,
-                                    f.num_maximo AS numMax,
-                                    COUNT(i.nome) AS numInscricoes
+                                    f.esta_fechada AS esta_fechada,
+                                    f.num_maximo AS numMax
                                 FROM 
                                     formacao f
                                 LEFT JOIN 
@@ -157,18 +157,50 @@
                     }
                     
                         while($row = mysqli_fetch_array($retval)){// vai buscar ha base de dados os dados nela guardada e poem os na tabela	
-                            echo "<tr onclick=\"window.location='formacao.php?nome=".$row['nome']."';\" style='cursor:pointer;'>";
-                            echo "<td style='width: 20%'>".$row['nome']."</td>";
-                            echo "<td style='width: 20%'>".$row['numMax']."</td>";
-                            echo "<td style='width: 20%'>".$row['numInscricoes']."</td>";
-                            echo "<td style='width: 20%'>".$row['data_fecho']."</td>";
+                            echo "<tr onclick=\"window.location='dados_formacao.php?nome=".$row['nome']."';\" style='cursor:pointer;'>";
+                            echo "<td style='width: 15%'>".$row['nome']."</td>";
+                            echo "<td style='width: 15%'>".$row['numMax']."</td>";
+                            echo "<td style='width: 15%'>".$row['data_fecho']."</td>";
                             echo "<td style='width: 20%'>".$row['criterio_selecao']."</td>";
+                          
+                            if($row['esta_fechada'])
+                              $estado = "Fechada";
+                            else
+                              $estado = "Aberta";
+                            echo "<td style='width: 20%'>".$estado."</td>";
+                          
+                          $estado = estadoInscricao($row['nome'], $conn);
+                          if( $estado == "aceite" ){
+                            echo "<td style='width: 20%'>Aceite</td>";
+                          }
+                          else if ( $estado == "pendente" ){
+                            echo "<td style='width: 20%'>Pendente</td>";
+                          }
+                          
+
                             echo "</tr>";
                         }
                     
                     echo "</table><br/>";
                     mysqli_close($conn);
-                
+                        
+                    function estadoInscricao($nome, $conn){
+                      $sql = "SELECT estado
+                              FROM inscricao
+                              WHERE username = '".$_SESSION['username']."'
+                              AND nome = '".$nome."';";
+
+                      $retval = mysqli_query($conn, $sql);
+                      if(!$retval ){
+                        die('Could not get data: ' . mysqli_error($conn));
+                      }
+                      if(mysqli_num_rows($retval) == 0)
+                        return ;
+
+                      $row = mysqli_fetch_array($retval);
+                      return $row['estado'];
+                    }
+
                 ?></center>
 
             </div>
