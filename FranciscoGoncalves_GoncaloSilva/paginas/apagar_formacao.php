@@ -1,5 +1,4 @@
 <?php 
-
     session_start();
     if( $_SESSION['nivel'] != "admin" ||  $_SESSION['nivel'] != "docente"  ){
         header("Location: logout.php");
@@ -9,7 +8,6 @@
 
     // Ligar à base de dados
     include '../basedados/basedados.h';
-
 
     $sql = "DELETE FROM inscricao WHERE nome = '".$nome."';";
 
@@ -24,24 +22,23 @@
         </script>";
     }
 
-
     $sql = "DELETE FROM formacao WHERE nome = '".$nome."';";
-
     $retval = mysqli_query($conn , $sql);
     
     //Se correr bem dá o aviso abaixo
-    if (mysqli_affected_rows ($conn) == 1)
+    if (mysqli_affected_rows ($conn) == 1){
         echo "<script>
             if(confirm('Apagado com sucesso!')){
                 window.location.href = 'gestao_formacoes.php';
             }
         </script>";
+    }
     //Se der problemas dá o aviso abaixo
-    else
+    else{
         echo "<script>
             if(confirm('Apagado sem sucesso! :(')){
                 window.location.href = 'gestao_formacoes.php';
             }
         </script>";
-
+    }
 ?>

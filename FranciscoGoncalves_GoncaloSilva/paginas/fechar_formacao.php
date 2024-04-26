@@ -11,13 +11,13 @@
     // Ligar à base de dados
     include '../basedados/basedados.h';
 
-
     $sql = "UPDATE formacao SET esta_fechada = TRUE WHERE nome = '".$nome."';";
 
     if ($conn->query($sql) === TRUE) {
         //echo "Estado atualizado com sucesso!";
         
-    } else {
+    } 
+    else {
         //echo "Erro ao atualizar os dados: " . $conn->error;
         echo" <script>alert('Ocorreu um erro :(!');</script>";
     }
@@ -25,7 +25,7 @@
     //Validar inscricoes
     switch ($criterio) {
         case "Data Inscrição":
-                $sql="UPDATE inscricao
+            $sql="UPDATE inscricao
                 SET estado = 'aceite'
                 WHERE nome = '".$nome."' AND username IN (
                     SELECT username
@@ -97,7 +97,6 @@
             echo" <script>alert('O critério não é válido :(!');</script>";
     }
 
-
     if ($conn->query($sql) === TRUE) {
         //echo "Estado atualizado com sucesso!";
         echo" <script>alert('Formação fechada com sucesso! :)');</script>";
@@ -105,6 +104,5 @@
         //echo "Erro ao atualizar os dados: " . $conn->error;
         echo" <script>alert('Ocorreu um erro :(!');</script>";
     }
-
     header('Location: formacao.php');
 ?>
