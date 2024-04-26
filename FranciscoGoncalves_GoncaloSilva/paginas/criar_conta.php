@@ -11,7 +11,7 @@
             include '../basedados/basedados.h';
             
             if(usernameValido($username,$conn)){
-                $sql = "INSERT INTO utilizador ( username, palavra_passe, nome, data_nasc, nivel) VALUES ('".$username."', '".md5($password)."', '".$nome."', '".$data_nasc."', 'aluno')";
+                $sql = "INSERT INTO utilizador ( username, palavra_passe, nome, data_nasc, nivel) VALUES ('".$username."', '".md5($password)."', '".$nome."', '".$data_nasc."', 'pendente')";
                 $retval = mysqli_query($conn, $sql);
                 
                 if(mysqli_affected_rows($conn) == 1){//INSERT com sucesso

@@ -1,6 +1,6 @@
 <?php 
     session_start();
-    if( $_SESSION['nivel'] != "admin" ||  $_SESSION['nivel'] != "docente"  ){
+    if( $_SESSION['nivel'] != "admin" &&  $_SESSION['nivel'] != "docente"  ){
         header("Location: logout.php");
     }
 
