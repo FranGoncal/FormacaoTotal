@@ -116,9 +116,11 @@
                                     Nivel: <input type="text" style="margin-left: 110px;" name="nivel" value="'.$nivel.'"><br><br>
                                     
                                     <div style="margin-left: 130px;"><button class="botao" name="submit" type="submit">Atualizar</button></div>
+                                    <br>
+                                </form>
+                                    <a href="mudar_pass.php?utilizador='.$utilizador.'"><div style="margin-left: 85px;"><button class="botao" name="fechar">Alterar Palavra-passe</button></div></a>
                                     <br>';
                                         
-                        echo '</form>';
 
                         //a pagina validar.php é usada para apagar a conta, passando o nivel no $_GET
                         if(!($nivel == "apagado")){//Caso a dataFecho tenha passado

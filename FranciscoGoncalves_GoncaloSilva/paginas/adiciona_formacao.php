@@ -96,10 +96,10 @@
 
         <!-- Conteúdo da página-->
         <div class="contorno">
-            <div class="caixa" style="min-width: 60%;">
+            <div class="caixa" style="min-width: 80%;">
                 <div id="cabecalho" style="display: flex;justify-content: center;align-items: center;">
                     <div class="caixa" style="width: 100%; text-align: center;border: none;margin-top:20px;margin-bottom:20px;">
-                        <h1>Nova Formação</h1>
+                        <h1>Novo Curso de Formação</h1>
                     </div>
                 </div>
                 <div style="min-height: 500px;display: flex;">
@@ -109,7 +109,7 @@
 
                     <div id="direita" style="width:50%; padding-top: 60px;padding-bottom: 60px; padding-left: 50px;text-align: left;">
                         <form method="post" action="adiciona_formacao.php">
-                            Nome da Formação: <th><input type="text" name="nome" required><br><br>
+                            Nome do Curso de Formação: <th><input type="text" name="nome" required><br><br>
                             Vagas: <input type="number" style="margin-left: 95px;" name="vagas" required><br><br>
                             Data de Fecho: <input type="date" name="data_fecho" style="margin-left: 35px;" required><br><br>
                             Criterio Seleção<select id="opcoes" name="criterio" style="margin-left: 35px;" required>
@@ -122,7 +122,7 @@
                             <h6>
                                 Descrição:
                             </h6>    
-                            <textarea id="texto" name="descricao" rows="7" cols="45">Escreva uma descrição do curso...</textarea>
+                            <textarea id="texto" name="descricao" rows="7" cols="45">Escreva uma descrição do curso de formação...</textarea>
                             <br><br><br><br>   
 
                             <div style="margin-left: 100px;"><button class="botao" name="submit" type="submit">Criar</button></div>

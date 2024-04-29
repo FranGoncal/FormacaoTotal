@@ -62,7 +62,7 @@
             
                 <div id="cabecalho" style="display: flex;justify-content: center;align-items: center;">
                     <div class="caixa" style="width: 100%; text-align: center;border: none;margin-top:20px;margin-bottom:20px;">
-                            <h1>Formações</h1>
+                            <h1>Cursos de Formação</h1>
                     </div>
                 </div>
 
@@ -84,24 +84,45 @@
                         }
                         // Cria a tabela
                         echo "<table border='1' style='text-align:center; width: 1000px;'><tr><th>Nome</th><th>Vagas</th><br><th>Inscrições</th><th>Data Fecho</th><th>Critério</th><th>Estado</th></tr>";
-                        // Liga a tabela na base de dados
-                        $sql = 'SELECT 
-                                    f.nome AS nome,
-                                    f.data_fecho AS data_fecho,
-                                    f.criterio_selecao AS criterio_selecao,
-                                    f.esta_fechada AS esta_fechada,
-                                    f.num_maximo AS numMax,
-                                    COUNT(i.nome) AS numInscricoes
-                                FROM 
-                                utilizador u
-                                JOIN 
-                                    formacao f ON u.username = f.username
-                                LEFT JOIN 
-                                    inscricao i ON f.nome = i.nome
-                                WHERE 
-                                    u.username = "'.$nome.'"
-                                GROUP BY 
-                                    f.nome, f.num_maximo;';
+                        if ($_SESSION['nivel']== "docente"){
+                            $sql = 'SELECT 
+                                f.nome AS nome,
+                                f.data_fecho AS data_fecho,
+                                f.criterio_selecao AS criterio_selecao,
+                                f.esta_fechada AS esta_fechada,
+                                f.num_maximo AS numMax,
+                                COUNT(i.nome) AS numInscricoes
+                            FROM 
+                            utilizador u
+                            JOIN 
+                                formacao f ON u.username = f.username
+                            LEFT JOIN 
+                                inscricao i ON f.nome = i.nome
+                            WHERE 
+                                u.username = "'.$nome.'"
+                            GROUP BY 
+                                f.nome, f.num_maximo;';
+                        }
+                        else if ($_SESSION['nivel']== "admin"){
+                            $sql = 'SELECT 
+                                f.nome AS nome,
+                                f.data_fecho AS data_fecho,
+                                f.criterio_selecao AS criterio_selecao,
+                                f.esta_fechada AS esta_fechada,
+                                f.num_maximo AS numMax,
+                                COUNT(i.nome) AS numInscricoes
+                            FROM 
+                            utilizador u
+                            JOIN 
+                                formacao f ON u.username = f.username
+                            LEFT JOIN 
+                                inscricao i ON f.nome = i.nome
+                            GROUP BY 
+                                f.nome, f.num_maximo;';
+                        }
+
+
+                        
                         //Seleciona a base de dados
                         $retval = mysqli_query( $conn, $sql );
                         if(! $retval ){
@@ -109,8 +130,8 @@
                         }
                         
                         while($row = mysqli_fetch_array($retval)){// vai buscar ha base de dados os dados nela guardada e poem os na tabela	
-                            echo "<tr onclick=\"window.location='formacao.php?nome=".$row['nome']."';\" style='cursor:pointer;'>";
-                            echo "<td style='width: 10%'>".$row['nome']."</td>";
+                            echo "<tr onclick=\"window.location='formacao.php?nome=".$row['nome']."';\" style='cursor:pointer;' class = 'tabela'>";
+                            echo "<td style='width: 10%;'>".$row['nome']."</td>";
                             echo "<td style='width: 15%'>".$row['numMax']."</td>";
                             echo "<td style='width: 20%'>".$row['numInscricoes']."</td>";
                             echo "<td style='width: 25%'>".$row['data_fecho']."</td>";

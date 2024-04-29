@@ -168,3 +168,7 @@ color: #f0f0f0;
   cursor: pointer;
   background-color: #007009;
   }
+
+.tabela:hover {
+  background-color: #a7a7a7;
+  }

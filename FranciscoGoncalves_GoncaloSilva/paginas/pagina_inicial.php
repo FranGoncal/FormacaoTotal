@@ -103,7 +103,7 @@
                                 <a href="gerir_inscricoes.php" style="cursor: pointer;">
                                     <div><img src="livros.png" style="width: 250px; height:250px;margin-bottom: 24px;" alt="Search Icon" class="search-icon"></div>
                                     
-                                    <div><button class="botao" name ="submit" type="submit">Gerir Inscrições</button></div>
+                                    <div><button class="botao" name ="submit" type="submit">Gerir Inscrições de Cursos</button></div>
                                 </a>
                             </div>
                         </div>';

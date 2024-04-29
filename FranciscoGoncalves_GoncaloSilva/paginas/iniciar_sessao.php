@@ -10,33 +10,48 @@
         
         $retval = mysqli_query($conn, $sql);
         if(!$retval ){
-        die('Could not get data: ' . mysqli_error($conn));
+            die('Could not get data: ' . mysqli_error($conn));
         }
 
         if(mysqli_num_rows($retval) > 0) {
-        $row = mysqli_fetch_assoc($retval);
-        if($row) {
-            // Password correcta
-            ob_start();
-            session_start();
-            $_SESSION['username']=$username;
-            $_SESSION['nivel']=$row['nivel'];
-            if($row['nivel']=="aluno")
-                header("Location: pagina_inicial.php");
-            else if($row['nivel']=="admin" || $row['nivel']=="docente")
-                header("Location: pagina_inicial_adm.php");
-            else{
-                echo"<script>
-                        if(confirm('Este acesso não foi autorizado!')){
-                            window.location.href = 'logout.php';
-                        }
-                    </script>";
+            $row = mysqli_fetch_assoc($retval);
+            if($row) {
+                // Password correcta
+                ob_start();
+                session_start();
+                $_SESSION['username']=$username;
+                $_SESSION['nivel']=$row['nivel'];
+                if($row['nivel']=="aluno")
+                    header("Location: pagina_inicial.php");
+                else if($row['nivel']=="admin" || $row['nivel']=="docente")
+                    header("Location: pagina_inicial_adm.php");
+                else if($row['nivel']=="pendente"){
+                    echo"<script>
+                            if(confirm('A sua conta ainda não foi validada. Tente mais tarde!')){
+                                window.location.href = 'logout.php';
+                            }
+                        </script>";
+                }
+                else if($row['nivel']=="apagado"){
+                    echo"<script>
+                            if(confirm('A sua conta foi apagada!')){
+                                window.location.href = 'logout.php';
+                            }
+                        </script>";
+                }
+                else{
+                    echo"<script>
+                            if(confirm('Este acesso não foi autorizado!')){
+                                window.location.href = 'logout.php';
+                            }
+                        </script>";
+                }
+            } else {
+                //Se a $row não contiver um valor 
+                echo" <script>alert('Erro ao obter os dados do utilizador! :(');</script>";
             }
-        } else {
-            //Se a $row não contiver um valor 
-            echo" <script>alert('Erro ao obter os dados do utilizador! :(');</script>";
-        }
-        } else {
+        } 
+        else {
             //Se não encontrou o username na base de dados com a password correta
             echo" <script>alert('Credenciais incorretas! :(');</script>";
         }

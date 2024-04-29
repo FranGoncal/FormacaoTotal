@@ -121,7 +121,7 @@
             <div class="caixa" style="min-width: 80%;">
                 <div id="cabecalho" style="display: flex;justify-content: center;align-items: center;">
                     <div class="caixa" style="width: 100%; text-align: center;border: none;margin-top:20px;margin-bottom:20px;">
-                        <h1>Dados Formação</h1>
+                        <h1>Dados do Curso de Formação</h1>
                     </div>
                 </div>
 

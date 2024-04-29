@@ -61,7 +61,7 @@
             
                 <div id="cabecalho" style="display: flex;justify-content: center;align-items: center;">
                     <div class="caixa" style="width: 100%; text-align: center;border: none;margin-top:20px;margin-bottom:20px;">
-                            <h1>Formações</h1>
+                            <h1>Gerir Inscrições de Cursos</h1>
                     </div>
                 </div>
 
@@ -76,7 +76,7 @@
                                     echo '<input type="checkbox" name="option" checked >';
                                 }
                             ?>
-                            As minhas Formações 
+                            As minhas Inscrições 
                         </div>
                         
                         <div style="background-color: #cccccc; border-radius: 20px;border: 1px solid #02365c; padding-left: 12px;padding-right: 10px;">
@@ -154,16 +154,16 @@
                         }
                         
                         while($row = mysqli_fetch_array($retval)){// vai buscar ha base de dados os dados nela guardada e poem os na tabela	
-                            echo "<tr onclick=\"window.location='dados_formacao.php?nome=".$row['nome']."';\" style='cursor:pointer;'>";
+                            echo "<tr onclick=\"window.location='dados_formacao.php?nome=".$row['nome']."';\" style='cursor:pointer;' class = 'tabela'>";
                             echo "<td style='width: 15%'>".$row['nome']."</td>";
                             echo "<td style='width: 15%'>".$row['numMax']."</td>";
                             echo "<td style='width: 15%'>".$row['data_fecho']."</td>";
                             echo "<td style='width: 20%'>".$row['criterio_selecao']."</td>";
                         
                             if($row['esta_fechada'])
-                            $estado = "Fechada";
+                                $estado = "Fechada";
                             else
-                            $estado = "Aberta";
+                                $estado = "Aberta";
                             echo "<td style='width: 20%'>".$estado."</td>";
                         
                         $estado = estadoInscricao($row['nome'], $conn);
@@ -172,6 +172,9 @@
                         }
                         else if ( $estado == "pendente" ){
                             echo "<td style='width: 20%'>Pendente</td>";
+                        }
+                        else{
+                            echo "<td style='width: 20%'></td>";
                         }
                         
 
