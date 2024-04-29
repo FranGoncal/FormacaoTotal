@@ -1,4 +1,3 @@
---Codigo criação da BD
 DROP DATABASE IF EXISTS FORMACAO_TOTAL;
 CREATE DATABASE FORMACAO_TOTAL;
 USE FORMACAO_TOTAL;
@@ -45,18 +44,19 @@ INSERT INTO utilizador (username, nome, data_nasc, palavra_passe, nivel) VALUES
 ('utilizador6', 'Utilizador 6', '1982-06-06', 'password6', 'aluno');
 
 INSERT INTO formacao (nome, num_maximo, esta_fechada, criterio_selecao, data_Fecho, username ,descricao) VALUES
-('Java', 50, false, "Data Inscrição", "2020-01-01", 'docente', 'Esta formação meramente para fins académicos destina-se aos alunos que tenham curiosidade na área da informática e que gostam deste estilo de conteudos. Considere a sua inscrição!'),
+('Java', 10, false, "Data Inscrição", "2020-01-01", 'docente', 'Esta formação meramente para fins académicos destina-se aos alunos que tenham curiosidade na área da informática e que gostam deste estilo de conteudos. Considere a sua inscrição!'),
 ('PHP', 10, false, "Data Inscrição", "2022-01-01", 'docente', 'Esta formação meramente para fins académicos destina-se aos alunos que tenham curiosidade na área da informática e que gostam deste estilo de conteudos. Considere a sua inscrição!'),
-('PHP2', 10, false, "Ordem Alfabética", "2023-01-01", 'docente', 'Esta formação meramente para fins académicos destina-se aos alunos que tenham curiosidade na área da informática e que gostam deste estilo de conteudos. Considere a sua inscrição!'),
-('PHP3', 20, false, "Menor Idade", "2024-12-12", 'docente', 'Esta formação meramente para fins académicos destina-se aos alunos que tenham curiosidade na área da informática e que gostam deste estilo de conteudos. Considere a sua inscrição!'),
-('HTML', 20, false, "Maior Idade", "2025-01-01", 'docente', 'Esta formação meramente para fins académicos destina-se aos alunos que tenham curiosidade na área da informática e que gostam deste estilo de conteudos. Considere a sua inscrição!');
+('PHP2', 6, false, "Ordem Alfabética", "2023-01-01", 'docente', 'Esta formação meramente para fins académicos destina-se aos alunos que tenham curiosidade na área da informática e que gostam deste estilo de conteudos. Considere a sua inscrição!'),
+('PHP3', 6, false, "Menor Idade", "2024-12-12", 'docente', 'Esta formação meramente para fins académicos destina-se aos alunos que tenham curiosidade na área da informática e que gostam deste estilo de conteudos. Considere a sua inscrição!'),
+('HTML', 20, false, "Maior Idade", "2025-01-01", 'docente', 'Esta formação meramente para fins académicos destina-se aos alunos que tenham curiosidade na área da informática e que gostam deste estilo de conteudos. Considere a sua inscrição!'),
+('Agricultura A', 3, false, "Ordem Alfabética", "2025-01-01", 'admin', 'Esta formação meramente para fins académicos destina-se aos alunos que tenham curiosidade na área da informática e que gostam deste estilo de conteudos. Considere a sua inscrição!');
 
 INSERT INTO inscricao (username, estado, nome, data_inscricao) VALUES
 ('aluno', 'pendente','HTML', CURDATE()),
 ('utilizador1','pendente', 'HTML', '1999-05-10'),
 ('utilizador2','pendente', 'HTML', '2022-05-10'),
 ('utilizador3','pendente', 'HTML', '2021-01-12'),
-('utilizador4','pendente', 'HTML', '2000-01-12'),
+('utilizador4','pendente', 'HTML', CURDATE()),
 ('utilizador5','pendente', 'HTML', '2001-02-12'),
 ('utilizador6','pendente', 'HTML', '2001-01-12'),
 ('aluno','pendente', 'Java', CURDATE()),
@@ -73,4 +73,8 @@ INSERT INTO inscricao (username, estado, nome, data_inscricao) VALUES
 ('aluno','pendente', 'PHP2', CURDATE()),
 ('utilizador1','pendente', 'PHP2', CURDATE()),
 ('utilizador2','pendente', 'PHP2', CURDATE()),
-('aluno','pendente', 'PHP3', CURDATE());
+('aluno','pendente', 'PHP3', CURDATE()),
+('aluno', 'pendente','Agricultura A', CURDATE()),
+('utilizador6','pendente', 'Agricultura A', CURDATE()),
+('utilizador5','pendente', 'Agricultura A', '2001-02-12'),
+('utilizador1','pendente', 'Agricultura A', '1999-05-10');
