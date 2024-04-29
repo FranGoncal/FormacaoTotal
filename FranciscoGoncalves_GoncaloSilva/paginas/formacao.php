@@ -192,13 +192,13 @@
                                 </form>';
 
                             if($data_fecho < date('Y-m-d')){//Caso a dataFecho tenha passado
-                                echo '<a href="fechar_formacao.php?nome='.$nome.'&criterio='.$criterio.'&vagas='.$vagas.'"><div style="margin-left: 100px;"><button class="botao" name="fechar">Fechar Formação</button></div></a>';
+                                echo '<a href="fechar_formacao.php?nome='.$nome.'&criterio='.$criterio.'&vagas='.$vagas.'"><div style="margin-left: 100px;"><button class="botao" name="fechar">Fechar Curso</button></div></a>';
                             }
                             else{//Caso a dataFecho não tenha passado (cinzento)
-                                echo '<div style="margin-left: 100px;"><button class="botao_off" type="submit" onclick="alert(\'A Data limite ainda não passou\')">Fechar Formação</button></div>';
+                                echo '<div style="margin-left: 110px;"><button class="botao_off" type="submit" onclick="alert(\'A Data limite ainda não passou\')">Fechar Curso</button></div>';
                             }
                                 echo '<br>
-                                <a href="apagar_formacao.php?nome='.$nome.'"><div style="margin-left: 100px;"><button class="botao_vermelho" name="apagar">Apagar Formação</button></div></a>
+                                <a href="apagar_formacao.php?nome='.$nome.'"><div style="margin-left: 110px;"><button class="botao_vermelho" name="apagar">Apagar Curso</button></div></a>
                             </div>';
                         }         
                         else{
