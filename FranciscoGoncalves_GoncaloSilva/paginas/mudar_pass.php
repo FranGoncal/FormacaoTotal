@@ -1,6 +1,10 @@
 <?php
     session_start();
+    
     //confirmcao de nivel
+    if( $_SESSION['nivel'] != "admin" ){
+        header("Location: logout.php");
+    }
 
     $utilizador = $_GET['utilizador'];
 

@@ -140,12 +140,12 @@
                             <div id="direita" style="width:100%; padding-top: 60px;padding-bottom: 60px; padding-left: 50px;text-align: left;margin-left: 33%;">
                                 <form method="post" action="formacao.php">
 
-                                    Nome da Formação: <th>'.$nome.'<br><br>
+                                    Nome do Curso de Formação: <th>'.$nome.'<br><br>
                                     Vagas: <input type="text" style="margin-left: 95px;" name="num_maximo" value="'.$vagas.'"><br><br>
-                                    Esta Fechado: <th>'.$estadoFormacao.'<br><br>
-                                    Data Fecho: <input type="date" style="margin-left: 65px;" name="data_fecho" value="'.$data_fecho.'"><br><br>
+                                    Estado do Curso de Formação: <th>'.$estadoFormacao.'<br><br>
+                                    Data de Fecho: <input type="date" style="margin-left: 65px;" name="data_fecho" value="'.$data_fecho.'"><br><br>
 
-                                    Critério Seleção:
+                                    Critério de Seleção:
                                     <select id="opcoes" name="criterio_selecao" style="margin-left: 35px;">';
                                         
                             if($criterio == "Data Inscrição"){
@@ -205,11 +205,11 @@
                             echo '
                             <div id="direita" style="width: 400px; max-width: 450px;padding-top: 60px;padding-bottom: 60px; padding-left: 60px;text-align: left;margin: 6%;">
                                 <div>
-                                    Nome da Formação: <th>'.$nome.'<br><br>
+                                    Nome do Curso de Formação: <th>'.$nome.'<br><br>
                                     Vagas: '.$vagas.'<br><br>
-                                    Esta Fechado: <th>'.$estadoFormacao.'<br><br>
-                                    Data Fecho:'.$data_fecho.'<br><br>
-                                    Critério Seleção: '.$criterio.'<br><br>
+                                    Estado do Curso de Formação: <th>'.$estadoFormacao.'<br><br>
+                                    Data de Fecho:'.$data_fecho.'<br><br>
+                                    Critério de Seleção: '.$criterio.'<br><br>
                                     Docente: <th>'.$responsavel.'<br><br>
 
                                     <h5>
